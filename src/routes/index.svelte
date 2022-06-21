@@ -33,12 +33,12 @@
     }
 </script>
 
-<svelte:window on:keydown={handleInput}/>
+<svelte:window on:keydown={handleInput} />
 
 <body>
     <h1>CodeType</h1>
     <p>Exercice: {exercice}</p>
-    <p>
+    <p id="input" >
         {#each input as letter, i}
             {#if letter !== exercice[i]}
                 <span class="incorrect">{letter}</span>
@@ -52,5 +52,26 @@
 <style>
     .incorrect {
         color: tomato;
+    }
+
+    #input {
+        padding-block: .25rem;
+        padding-right: .1rem;
+        animation: blink 1.25s infinite;
+        display: inline;
+    }
+
+    @keyframes blink {
+        0% {
+            border-right: 3px solid #ffc600;
+        }
+
+        50% {
+            border-right: 3px solid #ffc60000;
+        }
+
+        100% {
+            border-right: 3px solid #ffc600;
+        }
     }
 </style>
