@@ -25,11 +25,10 @@
     function submitInput() {
         if (input === exercice) {
             alert("100 points!");
-            input = "";
         } else {
             alert("nope, 0 points.");
-
         }
+        input = "";
     }
 </script>
 
