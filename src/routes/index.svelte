@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    let key = "";
+
+    function handleInput(event) {
+        console.log(event.key);
+        key = event.key
+    }
+</script>
+
+<svelte:window on:keydown={handleInput}/>
+
+<body>
+    <h1>CodeType</h1>
+    <p>Current key: {key}</p>
+</body>
