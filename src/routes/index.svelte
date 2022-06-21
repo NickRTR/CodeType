@@ -1,9 +1,29 @@
 <script>
-    let key = "";
+    let exercice = "Hello World()!"
+
+    let input = "";
 
     function handleInput(event) {
-        console.log(event.key);
-        key = event.key
+        // delete last letter on backspace
+        if (event.key === "Backspace") {
+            input = input.slice(0, -1);
+        }
+
+        if (event.key.length > 1) return; // exit key codes like shift
+        
+        input += event.key;
+        if (input.length === exercice.length) {
+            submitInput();
+        }
+    }
+
+    function submitInput() {
+        if (input === exercice) {
+            alert("100 points!");
+            input = "";
+        } else {
+            alert("nope, 0 points.");
+        }
     }
 </script>
 
@@ -11,5 +31,6 @@
 
 <body>
     <h1>CodeType</h1>
-    <p>Current key: {key}</p>
+    <p>Exercice: {exercice}</p>
+    <p>Input: {input}</p>
 </body>
