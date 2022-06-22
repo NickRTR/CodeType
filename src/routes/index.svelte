@@ -31,8 +31,10 @@
 
     function submitInput() {
         let finishTime = new Date();
-        let timer = finishTime.getSeconds() - startTime.getSeconds();
-        console.log("Time: " + timer);
+        console.log(startTime.getMilliseconds());
+        console.log(finishTime.getMilliseconds());
+        let timer = (finishTime.getTime() - startTime.getTime()) / 1000;
+        console.log("Time: " + timer + "s");
         console.log("Mistakes: " + mistakes);
 
         input = "";
