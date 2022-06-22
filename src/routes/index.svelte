@@ -1,7 +1,10 @@
 <script>
     let exercice = "Hello World()!"
-
     let input = "";
+
+    // stats
+    let mistakes = 0;
+    let startTime;
 
     function handleInput(event) {
         // delete last letter on backspace
@@ -11,11 +14,15 @@
 
         if (event.key.length > 1) return; // exit key codes like shift
 
-        if (event.key !== exercice[input.length] && event.key === " ") {
-            input += "_" // add _ to show wrong spaces
-        } else {
-            input += event.key;
+        // on first input, set start time
+        if (input.length === 0 && startTime === undefined) {
+            startTime = new Date();
         }
+
+        // on mistake, increase mistakes counter
+        if (event.key !== exercice[input.length - 1]) mistakes++;
+        
+        input += event.key;
 
         if (input.length === exercice.length) {
             submitInput();
@@ -23,22 +30,13 @@
     }
 
     function submitInput() {
-        let mistakes = calcMistakes();
-        console.log(mistakes);
-        if (input === exercice) {
-            alert("100 points!");
-        } else {
-            alert("nope, 0 points.");
-        }
-        input = "";
-    }
+        let finishTime = new Date();
+        let timer = finishTime.getSeconds() - startTime.getSeconds();
+        console.log("Time: " + timer);
+        console.log("Mistakes: " + mistakes);
 
-    function calcMistakes() {
-        let mistakesCount = 0;
-        for (let i = 0; i < input.length; i++) {
-            if (input[i] !== exercice[i]) mistakesCount++;
-        }
-        return mistakesCount;
+        input = "";
+        startTime = undefined;
     }
 </script>
 
