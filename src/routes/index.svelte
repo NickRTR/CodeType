@@ -39,9 +39,9 @@
         <p id="input" >
             {#each input as letter, i}
                 {#if letter !== exercice[i]}
-                    {#if letter === " "}
+                    {#if exercice[i] === " "}
                         <!-- &nbsp is a space -->
-                        <span class="incorrectLetter">&nbsp</span>
+                        <span class="incorrectLetter">_</span>
                     {:else}
                         <span class="incorrectLetter">{exercice[i]}</span>
                     {/if}
