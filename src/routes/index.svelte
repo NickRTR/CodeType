@@ -35,42 +35,67 @@
 <svelte:window on:keydown={handleInput} />
 
 <body>
-    <h1>CodeType</h1>
-    <p>Exercice: {exercice}</p>
-    <p id="input" >
-        {#each input as letter, i}
-            {#if letter !== exercice[i]}
-                <span class="incorrect">{letter}</span>
-            {:else}
-                <span>{letter}</span>
-            {/if}
-        {/each}
-    </p>
+    <main>
+        <p id="input" >
+            {#each input as letter, i}
+                {#if letter !== exercice[i]}
+                    {#if letter === " "}
+                        <!-- &nbsp is a space -->
+                        <span class="incorrectLetter">&nbsp</span>
+                    {:else}
+                        <span class="incorrectLetter">{exercice[i]}</span>
+                    {/if}
+                {:else}
+                    {#if letter === " "}
+                        <span>&nbsp</span>
+                    {:else}
+                        <span>{letter}</span>
+                    {/if}
+                {/if}
+            {/each}
+        </p>
+        <p id="exercice">
+            {#each exercice.slice(input.length) as letter}
+                {#if letter === " "}
+                    <span class="exerciceLetter">&nbsp</span>
+                {:else}
+                    <span class="exerciceLetter">{letter}</span>
+                {/if}
+            {/each}
+        </p>
+    </main>
 </body>
 
 <style>
-    .incorrect {
-        color: tomato;
+    main {
+        display: inline-flex;
+        padding-block: .25rem;
+        margin-top: 1rem;
+    }
+
+    main p {
+        margin: 0;
+        letter-spacing: .025rem;
     }
 
     #input {
-        padding-block: .25rem;
-        padding-right: .1rem;
-        animation: blink 1.25s infinite;
-        display: inline;
+        border-right: 2px solid transparent;
+        animation: blink 1.5s cubic-bezier(.215, .61, .355, 1) forwards infinite;
+        /* outplay the moving cursor */
+        margin-right: -2px; 
+    }
+
+    .incorrectLetter {
+        color: red;
+    }
+
+    .exerciceLetter {
+        color: gray;
     }
 
     @keyframes blink {
-        0% {
-            border-right: 3px solid #ffc600;
-        }
-
         50% {
-            border-right: 3px solid #ffc60000;
-        }
-
-        100% {
-            border-right: 3px solid #ffc600;
+            border-color: #ffc600;
         }
     }
 </style>
