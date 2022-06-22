@@ -23,12 +23,22 @@
     }
 
     function submitInput() {
+        let mistakes = calcMistakes();
+        console.log(mistakes);
         if (input === exercice) {
             alert("100 points!");
         } else {
             alert("nope, 0 points.");
         }
         input = "";
+    }
+
+    function calcMistakes() {
+        let mistakesCount = 0;
+        for (let i = 0; i < input.length; i++) {
+            if (input[i] !== exercice[i]) mistakesCount++;
+        }
+        return mistakesCount;
     }
 </script>
 
