@@ -1,5 +1,5 @@
 <script>
-    let exercice = "Hello World()!"
+    let exercice = 'Hello Word("Mommy");'
     let input = "";
 
     // stats
@@ -33,12 +33,20 @@
         let finishTime = new Date();
         console.log(startTime.getMilliseconds());
         console.log(finishTime.getMilliseconds());
-        let timer = (finishTime.getTime() - startTime.getTime()) / 1000;
-        console.log("Time: " + timer + "s");
+        let time = (finishTime.getTime() - startTime.getTime()) / 1000;
+        console.log("WPM: " + calcWPM(time));
+        console.log("Time: " + time + "s");
         console.log("Mistakes: " + mistakes);
 
         input = "";
         startTime = undefined;
+    }
+
+    function calcWPM(time) {
+        const wordCount = exercice.split(" ").length;
+        const WPS = wordCount / time;
+        const WPM = WPS * 60;
+        return WPM;
     }
 </script>
 
@@ -46,7 +54,7 @@
 
 <body>
     <main>
-        <p id="input" >
+        <p id="input" class:animateCursor={input.length === 0}>
             {#each input as letter, i}
                 {#if letter !== exercice[i]}
                     {#if exercice[i] === " "}
@@ -85,14 +93,16 @@
 
     main p {
         margin: 0;
-        letter-spacing: .025rem;
     }
 
     #input {
-        border-right: 2px solid transparent;
+        border-right: 2px solid #ffc600;
+        /* normalize the moving cursor */
+        margin-right: -2px;
+    }
+    
+    .animateCursor {
         animation: blink 1.5s cubic-bezier(.215, .61, .355, 1) forwards infinite;
-        /* outplay the moving cursor */
-        margin-right: -2px; 
     }
 
     .incorrectLetter {
@@ -105,7 +115,7 @@
 
     @keyframes blink {
         50% {
-            border-color: #ffc600;
+            border-color: transparent;
         }
     }
 </style>
