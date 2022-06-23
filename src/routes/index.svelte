@@ -11,8 +11,10 @@
     let input = "";
 
     // stats
-    let mistakes = 0;
+    let stats;
     let startTime;
+    let mistakes = 0;
+    let time;
 
     function handleInput(event) {
         // delete last letter on backspace
@@ -38,16 +40,31 @@
     }
 
     function submitInput() {
-        let finishTime = new Date();
-        console.log(startTime.getMilliseconds());
-        console.log(finishTime.getMilliseconds());
-        let time = (finishTime.getTime() - startTime.getTime()) / 1000;
-        console.log("WPM: " + calcWPM(time));
-        console.log("Time: " + time + "s");
-        console.log("Mistakes: " + mistakes);
+        const time = calcTime();
 
+        stats = {
+            time: time,
+            WPM: calcWPM(time),
+            CPM: calcCPM(time)
+        }
+
+        console.log(stats);
+        
         input = "";
         startTime = undefined;
+    }
+
+    function calcTime() {
+        let finishTime = new Date();
+        const time = (finishTime.getTime() - startTime.getTime()) / 1000;
+        return time;
+    }
+
+    function calcCPM(time) {
+        const wordCount = exercice.split("").length;
+        const CPS = wordCount / time;
+        const CPM = CPS * 60;
+        return CPM;
     }
 
     function calcWPM(time) {
