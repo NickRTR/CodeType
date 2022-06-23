@@ -4,12 +4,10 @@
     function onMobile() {
         if (browser) {
             return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-        } else {
-            return true;
         }
     }
 
-    let exercice = 'Hello Word("Mommy");'
+    let exercice = 'Hello World("Mommy");'
     let input = "";
 
     // stats
@@ -136,6 +134,7 @@
 
     .mobile img {
         width: 50%;
+        max-width: 200px;
     }
 
     @keyframes blink {

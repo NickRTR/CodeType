@@ -1,5 +1,5 @@
 <nav>
-    <h1>CodeType</h1>
+    <h1>Syntype</h1>
     <div class="divider"></div>
 </nav>
 
