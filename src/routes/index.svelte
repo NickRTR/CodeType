@@ -7,14 +7,17 @@
         }
     }
 
-    let exercice = 'Hello World("Mommy");'
+    let exercice = 'Hello World("Daddy");'
     let input = "";
 
     // stats
-    let stats;
+    let stats = {
+        time: "",
+        WPM: "",
+        CPM: ""
+    };
     let startTime;
     let mistakes = 0;
-    let time;
 
     function handleInput(event) {
         // delete last letter on backspace
@@ -93,7 +96,12 @@
 
 <body>
     {#if !onMobile()}
-        <main>
+        <header>
+            <p>Time: {stats.time}s</p>
+            <p>WPM: {Math.round(stats.WPM)}</p>
+            <p>CPM: {Math.round(stats.CPM)}</p>
+        </header>
+        <form>
             <p id="input" class:animateCursor={input.length === 0}>
                 {#each input as letter, i}
                     {#if letter !== exercice[i]}
@@ -121,7 +129,7 @@
                     {/if}
                 {/each}
             </p>
-        </main>
+        </form>
     {:else}
         <article class="mobile">
             <p>Please use this app on Desktop, unless you code on your phone...</p>
@@ -131,13 +139,22 @@
 </body>
 
 <style>
-    main {
+    header {
+        display: flex;
+        justify-content: center;
+    }
+
+    header p {
+        margin-inline: 1rem;
+    }
+
+    form {
         display: inline-flex;
         padding-block: .25rem;
         margin-top: 1rem;
     }
 
-    main p {
+    form p {
         margin: 0;
     }
 
