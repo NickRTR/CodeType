@@ -61,14 +61,28 @@
     }
 
     function calcCPM(time) {
-        const wordCount = exercice.split("").length;
-        const CPS = wordCount / time;
+        let characterCount = 0;
+        const inputCharacters = input.split("");
+        const exerciceCharacters = exercice.split("");
+        for (let i = 0; i < exerciceCharacters.length; i++) {
+            if (inputCharacters[i] === exerciceCharacters[i]) {
+                characterCount++;
+            }
+        }
+        const CPS = characterCount / time;
         const CPM = CPS * 60;
         return CPM;
     }
 
     function calcWPM(time) {
-        const wordCount = exercice.split(" ").length;
+        let wordCount = 0;
+        const inputWords = input.split(" ");
+        const exerciceWords = exercice.split(" ");
+        for (let i = 0; i < exerciceWords.length; i++) {
+            if (inputWords[i] === exerciceWords[i]) {
+                wordCount++;
+            }
+        }
         const WPS = wordCount / time;
         const WPM = WPS * 60;
         return WPM;
