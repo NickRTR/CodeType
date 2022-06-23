@@ -1,4 +1,14 @@
 <script>
+    import { browser } from "$app/env";
+
+    function onMobile() {
+        if (browser) {
+            return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        } else {
+            return true;
+        }
+    }
+
     let exercice = 'Hello Word("Mommy");'
     let input = "";
 
@@ -53,35 +63,42 @@
 <svelte:window on:keydown={handleInput} />
 
 <body>
-    <main>
-        <p id="input" class:animateCursor={input.length === 0}>
-            {#each input as letter, i}
-                {#if letter !== exercice[i]}
-                    {#if exercice[i] === " "}
-                        <!-- &nbsp is a space -->
-                        <span class="incorrectLetter">_</span>
+    {#if !onMobile()}
+        <main>
+            <p id="input" class:animateCursor={input.length === 0}>
+                {#each input as letter, i}
+                    {#if letter !== exercice[i]}
+                        {#if exercice[i] === " "}
+                            <!-- &nbsp is a space -->
+                            <span class="incorrectLetter">_</span>
+                        {:else}
+                            <span class="incorrectLetter">{exercice[i]}</span>
+                        {/if}
                     {:else}
-                        <span class="incorrectLetter">{exercice[i]}</span>
+                        {#if letter === " "}
+                            <span>&nbsp</span>
+                        {:else}
+                            <span>{letter}</span>
+                        {/if}
                     {/if}
-                {:else}
+                {/each}
+            </p>
+            <p id="exercice">
+                {#each exercice.slice(input.length) as letter}
                     {#if letter === " "}
-                        <span>&nbsp</span>
+                        <span class="exerciceLetter">&nbsp</span>
                     {:else}
-                        <span>{letter}</span>
+                        <span class="exerciceLetter">{letter}</span>
                     {/if}
-                {/if}
-            {/each}
-        </p>
-        <p id="exercice">
-            {#each exercice.slice(input.length) as letter}
-                {#if letter === " "}
-                    <span class="exerciceLetter">&nbsp</span>
-                {:else}
-                    <span class="exerciceLetter">{letter}</span>
-                {/if}
-            {/each}
-        </p>
-    </main>
+                {/each}
+            </p>
+        </main>
+    {:else}
+        <article class="mobile">
+            <p>Please use this app on Desktop, unless you code on your phone...</p>
+            <img src="https://yt3.ggpht.com/jdxaiUL9R7okC1RlM0XJaMiG5A67ED-UftUbZES8yR53qfjAVT15PucIE675Hc2Zr2N8yVc1Gg=s900-c-k-c0x00ffffff-no-rj" alt="The Rock" title="https://yt3.ggpht.com/jdxaiUL9R7okC1RlM0XJaMiG5A67ED-UftUbZES8yR53qfjAVT15PucIE675Hc2Zr2N8yVc1Gg=s900-c-k-c0x00ffffff-no-rj">
+        </article>
+    {/if}
 </body>
 
 <style>
@@ -111,6 +128,14 @@
 
     .exerciceLetter {
         color: gray;
+    }
+
+    .mobile {
+        margin-inline: 20px;
+    }
+
+    .mobile img {
+        width: 50%;
     }
 
     @keyframes blink {
