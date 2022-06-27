@@ -34,7 +34,6 @@
         }
 
         // on mistake, increase mistakes counter
-        console.log(event.key);
         if (event.key !== exercice[input.length]) mistakes++;
         
         input += event.key;
