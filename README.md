@@ -1,4 +1,4 @@
-# CodeType
+# Devtype
 
 ## Vision
 
