@@ -7,7 +7,7 @@
         }
     }
 
-    let exercice = 'Hello World("Daddy");'
+    let exercice = 'Hello World("Peter");'
     let input = "";
 
     // stats
@@ -95,10 +95,10 @@
 
     function resetStats() {
         stats = {
-            time: "",
+            time: 0,
             mistakes: 0,
-            WPM: "",
-            CPM: ""
+            WPM: 0,
+            CPM: 0
         };
     }
 </script>
