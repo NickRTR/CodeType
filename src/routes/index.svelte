@@ -13,6 +13,7 @@
     // stats
     let stats = {
         time: "",
+        mistakes: 0,
         WPM: "",
         CPM: ""
     };
@@ -33,7 +34,8 @@
         }
 
         // on mistake, increase mistakes counter
-        if (event.key !== exercice[input.length - 1]) mistakes++;
+        console.log(event.key);
+        if (event.key !== exercice[input.length]) mistakes++;
         
         input += event.key;
 
@@ -43,15 +45,10 @@
     }
 
     function submitInput() {
-        const time = calcTime();
-
-        stats = {
-            time: time,
-            WPM: calcWPM(time),
-            CPM: calcCPM(time)
-        }
-
-        console.log(stats);
+        stats.time = calcTime();
+        stats.mistakes = mistakes;
+        stats.WPM = calcWPM(stats.time);
+        stats.CPM = calcCPM(stats.time);
         
         input = "";
         startTime = undefined;
@@ -98,6 +95,7 @@
     {#if !onMobile()}
         <header>
             <p>Time: {stats.time}s</p>
+            <p>Mistakes: {stats.mistakes}</p>
             <p>WPM: {Math.round(stats.WPM)}</p>
             <p>CPM: {Math.round(stats.CPM)}</p>
         </header>
