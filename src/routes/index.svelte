@@ -12,7 +12,7 @@
 
     // stats
     let stats = {
-        time: "",
+        time: 0,
         mistakes: 0,
         WPM: 0,
         CPM: 0
@@ -45,19 +45,16 @@
 
         input += event.key;
 
-        stats.WPM = calcWPM(calcTime());
-        stats.CPM = calcCPM(calcTime());
+        stats.time = calcTime();
+        stats.WPM = calcWPM(stats.time);
+        stats.CPM = calcCPM(stats.time);
         
         if (input.length === exercice.length) {
             submitInput();
         }
     }
 
-    function submitInput() {
-        stats.time = calcTime();
-        // stats.WPM = calcWPM(stats.time);
-        // stats.CPM = calcCPM(stats.time);
-        
+    function submitInput() {       
         input = "";
         startTime = undefined;
     }
