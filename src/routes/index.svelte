@@ -14,16 +14,21 @@
     let stats = {
         time: "",
         mistakes: 0,
-        WPM: "",
-        CPM: ""
+        WPM: 0,
+        CPM: 0
     };
     let startTime;
-    let mistakes = 0;
 
     function handleInput(event) {
         // delete last letter on backspace
         if (event.key === "Backspace") {
             input = input.slice(0, -1);
+        }
+
+        // reset on esc
+        if (event.key === "Escape") {
+            input = "";
+            resetStats();
         }
 
         if (event.key.length > 1) return; // exit key codes like shift
@@ -34,10 +39,15 @@
         }
 
         // on mistake, increase mistakes counter
-        if (event.key !== exercice[input.length]) mistakes++;
-        
+        if (event.key !== exercice[input.length]) {
+            stats.mistakes++;
+        };
+
         input += event.key;
 
+        stats.WPM = calcWPM(calcTime());
+        stats.CPM = calcCPM(calcTime());
+        
         if (input.length === exercice.length) {
             submitInput();
         }
@@ -45,9 +55,8 @@
 
     function submitInput() {
         stats.time = calcTime();
-        stats.mistakes = mistakes;
-        stats.WPM = calcWPM(stats.time);
-        stats.CPM = calcCPM(stats.time);
+        // stats.WPM = calcWPM(stats.time);
+        // stats.CPM = calcCPM(stats.time);
         
         input = "";
         startTime = undefined;
@@ -60,6 +69,7 @@
     }
 
     function calcCPM(time) {
+        if (time < 0.1) return 0;
         let characterCount = 0;
         const inputCharacters = input.split("");
         const exerciceCharacters = exercice.split("");
@@ -69,11 +79,11 @@
             }
         }
         const CPS = characterCount / time;
-        const CPM = CPS * 60;
-        return CPM;
+        return CPS * 60;
     }
 
     function calcWPM(time) {
+        if (time < 0.1) return 0;
         let wordCount = 0;
         const inputWords = input.split(" ");
         const exerciceWords = exercice.split(" ");
@@ -83,8 +93,16 @@
             }
         }
         const WPS = wordCount / time;
-        const WPM = WPS * 60;
-        return WPM;
+        return WPS * 60;
+    }
+
+    function resetStats() {
+        stats = {
+            time: "",
+            mistakes: 0,
+            WPM: "",
+            CPM: ""
+        };
     }
 </script>
 
