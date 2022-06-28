@@ -1,5 +1,5 @@
 <script>
-    import { stats } from "$lib/stores";
+    import { stats, resetStats } from "$lib/stores";
 
     export let displayStats;
 </script>
@@ -11,7 +11,7 @@
         <p>WPM: {Math.round($stats.WPM)}</p>
         <p>CPM: {Math.round($stats.CPM)}</p>
 
-        <button type="button" on:click={() => {displayStats = false}}>Resume</button>
+        <button type="button" on:click={() => {displayStats = false; resetStats()}}>Resume</button>
     </header>
 </body>
 

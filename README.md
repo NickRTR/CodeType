@@ -7,6 +7,6 @@ CodeType is going to be a typing trainer that trains to write code syntax faster
 ## Todos
 
 TODO: Display live mistakes counter
-TODO: Display live timer
+TODO: Change number of mistakes in stats to accuracy
 TODO: Option to select ; on or off
 TODO: Option to select between "" and ''

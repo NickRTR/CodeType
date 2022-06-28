@@ -3,7 +3,7 @@
 
     export let submitted = false;
 
-    let exercice = 'Hello World("Peter");'
+    const exercice = 'Hello World("Peter");';
     let input = "";
 
     let startTime;
@@ -44,8 +44,8 @@
             submitInput();
         }
     }
-
-    function submitInput() {     
+    
+    function submitInput() {    
         submitted = true;
         
         input = "";
