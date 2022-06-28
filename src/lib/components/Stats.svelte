@@ -8,6 +8,7 @@
     <header>
         <p>Time: {$stats.time}s</p>
         <p>Mistakes: {$stats.mistakes}</p>
+        <p>Accuracy: {Math.round($stats.accuracy)}%</p>
         <p>WPM: {Math.round($stats.WPM)}</p>
         <p>CPM: {Math.round($stats.CPM)}</p>
 

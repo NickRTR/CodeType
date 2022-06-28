@@ -48,6 +48,8 @@
     function submitInput() {    
         submitted = true;
         
+        $stats.accuracy = 100 - ($stats.mistakes / exercice.length) * 100;
+
         input = "";
         startTime = undefined;
     }
