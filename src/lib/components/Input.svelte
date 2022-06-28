@@ -1,19 +1,16 @@
 <script>
     import { stats, resetStats } from "$lib/stores";
 
+    export let submitted = false;
+
     let exercice = 'Hello World("Peter");'
     let input = "";
 
-    // // $stats
-    // let $stats = {
-    //     time: 0,
-    //     mistakes: 0,
-    //     WPM: 0,
-    //     CPM: 0
-    // };
     let startTime;
 
     function handleInput(event) {
+        submitted = false;
+
         // delete last letter on backspace
         if (event.key === "Backspace") {
             input = input.slice(0, -1);
@@ -48,7 +45,9 @@
         }
     }
 
-    function submitInput() {       
+    function submitInput() {     
+        submitted = true;
+        
         input = "";
         startTime = undefined;
     }

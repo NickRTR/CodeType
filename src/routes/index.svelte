@@ -1,10 +1,12 @@
 <script>
     // components
     import Input from "$lib/components/Input.svelte";
+    import Stats from "$lib/components/Stats.svelte";
 
     // modules
-    import { stats } from "$lib/stores";
     import { browser } from "$app/env";
+
+    let displayStats = false;
 
     function onMobile() {
         if (browser) {
@@ -15,13 +17,11 @@
 
 <body>
     {#if !onMobile()}
-        <header>
-            <p>Time: {$stats.time}s</p>
-            <p>Mistakes: {$stats.mistakes}</p>
-            <p>WPM: {Math.round($stats.WPM)}</p>
-            <p>CPM: {Math.round($stats.CPM)}</p>
-        </header>
-        <Input />
+        {#if displayStats}
+            <Stats bind:displayStats />
+        {:else}
+            <Input bind:submitted={displayStats} />
+        {/if}
     {:else}
         <article class="mobile">
             <p>Please use this app on Desktop, unless you code on your phone...</p>
@@ -31,15 +31,6 @@
 </body>
 
 <style>
-    header {
-        display: flex;
-        justify-content: center;
-    }
-
-    header p {
-        margin-inline: 1rem;
-    }
-
     .mobile {
         margin-inline: 20px;
     }
