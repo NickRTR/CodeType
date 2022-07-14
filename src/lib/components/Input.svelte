@@ -93,7 +93,8 @@
 
 <body>
     <form>
-        <p id="input" class:animateCursor={input.length === 0}>
+        <!-- <p id="input" class:animateCursor={input.length === 0}> -->
+        <p id="input" class="animateCursor">
             {#each input as letter, i}
                 {#if letter !== exercice[i]}
                     {#if exercice[i] === " "}
