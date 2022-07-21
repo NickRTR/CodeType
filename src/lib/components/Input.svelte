@@ -137,8 +137,8 @@
 
     #input {
         border-right: 2px solid #ffc600;
-        /* normalize the moving cursor */
-        margin-right: -2px;
+        /* normalize cursor */
+        margin-inline: -1px;
     }
     
     .animateCursor {
