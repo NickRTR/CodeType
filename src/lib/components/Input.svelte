@@ -3,7 +3,7 @@
 
     export let submitted = false;
 
-    const exercice = 'Hello World("Peter");';
+    const exercice = "function exercise()";
     let input = "";
 
     let startTime;
