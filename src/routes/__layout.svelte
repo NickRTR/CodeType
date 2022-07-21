@@ -12,8 +12,8 @@
     :global(:root) {
         --accent: #FFC600;
         --accentTransparent: #FFC60000;
-        --background: white;
-        --text: black;
+        --background: black;
+        --text: white;
     }
 
     :global(body) {
