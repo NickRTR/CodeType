@@ -128,11 +128,11 @@
     form {
         display: inline-flex;
         padding-block: .25rem;
-        margin-top: 1rem;
     }
 
     form p {
         margin: 0;
+        font-size: 1.5rem;
     }
 
     #input {

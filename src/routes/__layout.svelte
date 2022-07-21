@@ -1,14 +1,24 @@
 <script>
     import Nav from "$lib/components/Nav.svelte";
+    import Footer from "../lib/components/Footer.svelte";
 </script>
 
 <body>
     <Nav />
 
-    <slot></slot>
+    <main><slot></slot></main>
+
+    <Footer />
 </body>
 
 <style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
     :global(:root) {
         --accent: #FFC600;
         --accentTransparent: #FFC60000;

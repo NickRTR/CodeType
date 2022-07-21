@@ -3,13 +3,12 @@
 </script>
 
 <nav>
-    <h1>Syntype</h1>
     <Divider />
+    <p>©2022 Nick Reutlinger</p>
 </nav>
 
 <style>
-    h1 {
-        margin-block: .8rem;
-        font-size: 2rem;
+    p {
+        margin-top: .8rem;
     }
 </style>
