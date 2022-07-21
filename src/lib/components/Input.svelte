@@ -13,7 +13,10 @@
 
         // delete last letter on backspace
         if (event.key === "Backspace") {
-            input = input.slice(0, -1);
+            // code to restrict deleting characters to the last written word
+            if (input[input.length - 1] !== " ") {
+                input = input.slice(0, -1);
+            }
         }
 
         // reset on esc
