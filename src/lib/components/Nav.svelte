@@ -47,6 +47,7 @@
 	.settings p {
 		text-decoration: underline;
 		cursor: pointer;
+		user-select: none;
 	}
 
 	.settings .disabled {
