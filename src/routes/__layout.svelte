@@ -30,7 +30,7 @@
 		margin: 0;
 		background-color: var(--background);
 		color: var(--text);
-		font-family: Consolas;
+		font-family: Consolas, "Courier New", monospace;
 		font-size: large;
 		text-align: center;
 	}
