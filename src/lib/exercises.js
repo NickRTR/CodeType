@@ -1,7 +1,9 @@
-import { semicolon } from "$lib/stores";
+import { settings } from "$lib/stores";
 import { get } from "svelte/store";
 
 export function generateExercise() {
+	const { semicolon, doubleQuotes } = get(settings);
+
 	let exercise = javascript[Math.floor(Math.random() * javascript.length)];
 
 	// replace the <varName> placeholder with a random variable name
@@ -17,10 +19,17 @@ export function generateExercise() {
 	exercise = exercise.replace("<randomName>", names[Math.floor(Math.random() * names.length)]);
 
 	// replace the <;> placeholder with a semicolon if semicolons are enabled
-	if (get(semicolon)) {
-		exercise = exercise.replace("<;>", ";");
+	if (semicolon) {
+		exercise = exercise.replaceAll("<;>", ";");
 	} else {
-		exercise = exercise.replace("<;>", "");
+		exercise = exercise.replaceAll("<;>", "");
+	}
+
+	// switch between single and double quotes according to settings
+	if (doubleQuotes) {
+		exercise = exercise.replaceAll("<'>", '"');
+	} else {
+		exercise = exercise.replaceAll("<'>", "'");
 	}
 
 	return exercise;
@@ -29,7 +38,7 @@ export function generateExercise() {
 export const javascript = [
 	"function <varName>()",
 	"let <varName> = <randomNumber><;>",
-	"const <varName> = <randomName><;>"
+	"const <varName> = <'><randomName><'><;>"
 ];
 
 export const variableNames = ["name", "age"];
