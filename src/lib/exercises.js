@@ -13,6 +13,9 @@ export function generateExercise() {
 	// replace the <randomNumber> placeholder with a random number
 	exercise = exercise.replace("<randomNumber>", Math.floor(Math.random() * 1000));
 
+	// replace the <randomName> placeholder with a random name
+	exercise = exercise.replace("<randomName>", names[Math.floor(Math.random() * names.length)]);
+
 	// replace the <;> placeholder with a semicolon if semicolons are enabled
 	if (get(semicolon)) {
 		exercise = exercise.replace("<;>", ";");
@@ -26,9 +29,34 @@ export function generateExercise() {
 export const javascript = [
 	"function <varName>()",
 	"let <varName> = <randomNumber><;>",
-	"const <varName> = <RandomName><;>"
+	"const <varName> = <randomName><;>"
 ];
 
 export const variableNames = ["name", "age"];
 
-export const names = ["Mario", "Luigi", "Peter", "Bob"];
+export const names = [
+	"Mario",
+	"Luigi",
+	"Peter",
+	"Bob",
+	"Joey",
+	"Aurelio",
+	"Evan",
+	"Donny",
+	"Foster",
+	"Dwayne",
+	"Grady",
+	"Quinton",
+	"Darin",
+	"Mickey",
+	"Hank",
+	"Kim",
+	"Peter",
+	"Jeremy",
+	"Jess",
+	"Jimmie",
+	"Vern",
+	"Pasquale",
+	"Romeo",
+	"Chris"
+];
