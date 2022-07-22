@@ -21,7 +21,7 @@
 
 	:global(:root) {
 		--accent: #ffc600;
-		--accentTransparent: #ffc60000;
+		--grey: grey;
 		--background: black;
 		--text: white;
 	}
