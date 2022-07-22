@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
 
+export const semicolon = writable(true);
+
 export const stats = writable({
 	time: 0,
 	mistakes: 0,

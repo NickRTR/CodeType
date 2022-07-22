@@ -1,9 +1,11 @@
 <script>
 	import { stats, resetStats } from "$lib/stores";
+	import { generateExercise } from "$lib/exercises";
 
 	export let submitted = false;
 
-	const exercice = "function exercise()";
+	let exercise = generateExercise();
+
 	let input = "";
 
 	let startTime;
@@ -33,7 +35,7 @@
 		}
 
 		// on mistake, increase mistakes counter
-		if (event.key !== exercice[input.length]) {
+		if (event.key !== exercise[input.length]) {
 			$stats.mistakes++;
 		}
 
@@ -43,7 +45,7 @@
 		$stats.WPM = calcWPM($stats.time);
 		$stats.CPM = calcCPM($stats.time);
 
-		if (input.length === exercice.length) {
+		if (input.length === exercise.length) {
 			submitInput();
 		}
 	}
@@ -51,9 +53,10 @@
 	function submitInput() {
 		submitted = true;
 
-		$stats.accuracy = 100 - ($stats.mistakes / exercice.length) * 100;
+		$stats.accuracy = 100 - ($stats.mistakes / exercise.length) * 100;
 
 		input = "";
+		exercise = generateExercise();
 		startTime = undefined;
 	}
 
@@ -67,9 +70,9 @@
 		if (time < 0.1) return 0;
 		let characterCount = 0;
 		const inputCharacters = input.split("");
-		const exerciceCharacters = exercice.split("");
-		for (let i = 0; i < exerciceCharacters.length; i++) {
-			if (inputCharacters[i] === exerciceCharacters[i]) {
+		const exerciseCharacters = exercise.split("");
+		for (let i = 0; i < exerciseCharacters.length; i++) {
+			if (inputCharacters[i] === exerciseCharacters[i]) {
 				characterCount++;
 			}
 		}
@@ -81,9 +84,9 @@
 		if (time < 0.1) return 0;
 		let wordCount = 0;
 		const inputWords = input.split(" ");
-		const exerciceWords = exercice.split(" ");
-		for (let i = 0; i < exerciceWords.length; i++) {
-			if (inputWords[i] === exerciceWords[i]) {
+		const exerciseWords = exercise.split(" ");
+		for (let i = 0; i < exerciseWords.length; i++) {
+			if (inputWords[i] === exerciseWords[i]) {
 				wordCount++;
 			}
 		}
@@ -99,12 +102,12 @@
 		<!-- <p id="input" class:animateCursor={input.length === 0}> -->
 		<p id="input" class="animateCursor">
 			{#each input as letter, i}
-				{#if letter !== exercice[i]}
-					{#if exercice[i] === " "}
+				{#if letter !== exercise[i]}
+					{#if exercise[i] === " "}
 						<!-- &nbsp is a space -->
 						<span class="incorrectLetter">_</span>
 					{:else}
-						<span class="incorrectLetter">{exercice[i]}</span>
+						<span class="incorrectLetter">{exercise[i]}</span>
 					{/if}
 				{:else if letter === " "}
 					<span>&nbsp</span>
@@ -113,12 +116,12 @@
 				{/if}
 			{/each}
 		</p>
-		<p id="exercice">
-			{#each exercice.slice(input.length) as letter}
+		<p id="exercise">
+			{#each exercise.slice(input.length) as letter}
 				{#if letter === " "}
-					<span class="exerciceLetter">&nbsp</span>
+					<span class="exerciseLetter">&nbsp</span>
 				{:else}
-					<span class="exerciceLetter">{letter}</span>
+					<span class="exerciseLetter">{letter}</span>
 				{/if}
 			{/each}
 		</p>
@@ -151,7 +154,7 @@
 		color: red;
 	}
 
-	.exerciceLetter {
+	.exerciseLetter {
 		color: gray;
 	}
 
