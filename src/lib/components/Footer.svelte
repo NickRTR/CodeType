@@ -1,14 +1,30 @@
 <script>
+	import { stats } from "$lib/stores";
 	import Divider from "$lib/components/Divider.svelte";
 </script>
 
-<nav>
+<footer>
 	<Divider />
-	<p>©2022 Nick Reutlinger</p>
-</nav>
+	<main>
+		<div class="liveStats">
+			<p>Mistakes: {$stats.mistakes}</p>
+		</div>
+		<p>©2022 Nick Reutlinger</p>
+	</main>
+</footer>
 
 <style>
+	main {
+		padding: 0.5rem;
+	}
+
 	p {
-		margin-top: 0.8rem;
+		margin: 0;
+		line-height: 2rem;
+	}
+
+	.liveStats {
+		display: flex;
+		justify-content: center;
 	}
 </style>
