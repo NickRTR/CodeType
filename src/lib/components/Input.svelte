@@ -4,17 +4,15 @@
 
 	export let submitted = false;
 
+	let input = "";
+
 	let exercise = generateExercise();
 
 	// generate new exercise on settings change
 	settings.subscribe(() => {
 		exercise = generateExercise();
-		if (input) {
-			input = "";
-		}
+		input = "";
 	});
-
-	let input = "";
 
 	let startTime;
 
