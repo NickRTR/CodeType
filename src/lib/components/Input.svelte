@@ -6,10 +6,12 @@
 
 	let exercise = generateExercise();
 
-	// generate new exercise if settings change
+	// generate new exercise on settings change
 	settings.subscribe(() => {
 		exercise = generateExercise();
-		input = "";
+		if (input) {
+			input = "";
+		}
 	});
 
 	let input = "";
