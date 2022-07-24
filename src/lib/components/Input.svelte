@@ -25,10 +25,7 @@
 			// restrict deleting to the last word that was wrong
 			let inputWords = input.split(" ");
 			let exerciseWords = exercise.split(" ");
-			if (
-				inputWords[inputWords.length - 2] !== exerciseWords[inputWords.length - 2] ||
-				input[input.length - 1] !== " "
-			) {
+			if (inputWords[inputWords.length - 2] !== exerciseWords[inputWords.length - 2] || input[input.length - 1] !== " ") {
 				input = input.slice(0, -1);
 			}
 		}

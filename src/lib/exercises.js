@@ -7,10 +7,7 @@ export function generateExercise() {
 	let exercise = javascript[Math.floor(Math.random() * javascript.length)];
 
 	// replace the <varName> placeholder with a random variable name
-	exercise = exercise.replace(
-		"<variableName>",
-		variableNames[Math.floor(Math.random() * variableNames.length)]
-	);
+	exercise = exercise.replace("<variableName>", variableNames[Math.floor(Math.random() * variableNames.length)]);
 
 	// replace the <randomNumber> placeholder with a random number
 	exercise = exercise.replace("<randomNumber>", Math.floor(Math.random() * 1000));
@@ -39,7 +36,11 @@ export const javascript = [
 	"function <variableName>()",
 	"let <variableName> = <randomNumber><;>",
 	"const <variableName> = <'><randomName><'><;>",
-	"console.log(<variableName>)<;>"
+	"console.log(<variableName>)<;>",
+	"npm run dev",
+	"npm run test",
+	"npm run build",
+	"npm run format"
 ];
 
 export const variableNames = ["name", "age", "isMobile"];
