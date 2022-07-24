@@ -1,6 +1,6 @@
 <script>
 	import Divider from "$lib/components/Divider.svelte";
-	import { settings } from "$lib/stores";
+	import { settings } from "$lib/persistentStores";
 </script>
 
 <nav>

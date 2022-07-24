@@ -1,5 +1,6 @@
 <script>
-	import { stats, resetStats, settings } from "$lib/stores";
+	import { stats, resetStats } from "$lib/stores";
+	import { settings } from "$lib/persistentStores";
 	import { generateExercise } from "$lib/exercises";
 
 	export let submitted = false;

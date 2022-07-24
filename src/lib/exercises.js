@@ -1,4 +1,4 @@
-import { settings } from "$lib/stores";
+import { settings } from "$lib/persistentStores";
 import { get } from "svelte/store";
 
 export function generateExercise() {

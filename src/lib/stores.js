@@ -1,10 +1,5 @@
 import { writable } from "svelte/store";
 
-export const settings = writable({
-	semicolon: true,
-	doubleQuotes: false
-});
-
 export const stats = writable({
 	time: 0,
 	mistakes: 0,
