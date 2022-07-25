@@ -2,7 +2,21 @@
 	import { stats, resetStats } from "$lib/stores";
 
 	export let displayStats;
+
+	function handleInput(event) {
+		// generate new exercise and exit stats if esc, enter or space is pressed
+		if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+			resume();
+		}
+	}
+
+	function resume() {
+		displayStats = false;
+		resetStats();
+	}
 </script>
+
+<svelte:window on:keydown={handleInput} />
 
 <body>
 	<main>
@@ -18,8 +32,7 @@
 			<button
 				type="button"
 				on:click={() => {
-					displayStats = false;
-					resetStats();
+					resume();
 				}}>Resume</button
 			>
 		</section>
