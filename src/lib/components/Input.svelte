@@ -34,6 +34,7 @@
 		if (event.key === "Escape") {
 			input = "";
 			resetStats();
+			exercise = generateExercise();
 		}
 
 		if (event.key.length > 1) return; // exit key codes like shift
