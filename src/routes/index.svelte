@@ -1,11 +1,6 @@
 <script context="module">
 	export async function load({ session }) {
-		try {
-			if (session.desktop === false) {
-				throw new Error("mobile not supported");
-			}
-		} catch (error) {
-			console.log(error);
+		if (session.desktop === false) {
 			return {
 				status: 304,
 				redirect: "/mobile"
