@@ -40,10 +40,12 @@ export const javascript = [
 	"npm run dev",
 	"npm run test",
 	"npm run build",
-	"npm run format"
+	"npm run format",
+	"export async function <variableName>() {",
+	"export const <variableName> = async () => {"
 ];
 
-export const variableNames = ["name", "age", "isMobile"];
+export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time"];
 
 export const names = [
 	"Mario",
