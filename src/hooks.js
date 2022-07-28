@@ -3,12 +3,16 @@ export async function handle({ event, resolve }) {
 
 	event.locals.desktop = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
+	if (event.locals.desktop) {
+		event.locals.desktop = false;
+	}
+
 	const response = await resolve(event);
 	return response;
 }
 
 export function getSession(event) {
 	return {
-		desktop: true
+		desktop: event.locals.desktop
 	};
 }
