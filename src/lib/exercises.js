@@ -45,7 +45,7 @@ export const javascript = [
 	"export const <variableName> = async () => {"
 ];
 
-export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time"];
+export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time", "width", "height", ""];
 
 export const names = [
 	"Mario",
