@@ -36,8 +36,8 @@ function replaceRandomBoolean(exercise) {
 }
 
 function replaceRandomString(exercise) {
-	// replaces the <randomName> placeholder with a random name
-	return exercise.replace("<randomName>", strings[Math.floor(Math.random() * strings.length)]);
+	// replaces the <randomString> placeholder with a random name
+	return exercise.replace("<randomString>", strings[Math.floor(Math.random() * strings.length)]);
 }
 
 function replaceParams(exercise) {
