@@ -54,6 +54,7 @@ export const javascript = [
 	"let <variableName> = <randomNumber><;>",
 	"const <variableName> = <'><randomString><'><;>",
 	"var <variableName> = <randomBoolean><;>",
+	"const data = await fetch(<'>/api/<variableName><'>)<;>",
 
 	// common syntax
 	"console.log(<variableName>)<;>",
