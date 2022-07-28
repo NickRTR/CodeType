@@ -55,7 +55,7 @@ export const javascript = [
 	"const <variableName> = <'><randomString><'><;>",
 	"var <variableName> = <randomBoolean><;>",
 
-	// comment syntax
+	// common syntax
 	"console.log(<variableName>)<;>",
 
 	// scripts
