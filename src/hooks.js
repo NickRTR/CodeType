@@ -9,6 +9,6 @@ export async function handle({ event, resolve }) {
 
 export function getSession(event) {
 	return {
-		desktop: event.locals.desktop
+		desktop: true
 	};
 }
