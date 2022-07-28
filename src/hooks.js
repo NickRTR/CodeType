@@ -3,9 +3,9 @@ export async function handle({ event, resolve }) {
 
 	event.locals.desktop = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
 
-	if (event.locals.desktop) {
-		event.locals.desktop = false;
-	}
+	// if (event.locals.desktop) {
+	// 	event.locals.desktop = false;
+	// }
 
 	const response = await resolve(event);
 	return response;
