@@ -12,6 +12,9 @@ export function generateExercise() {
 	// replace the <randomNumber> placeholder with a random number
 	exercise = exercise.replace("<randomNumber>", Math.floor(Math.random() * 1000));
 
+	// replace the <randomBoolean> placeholder with a random boolean
+	exercise = exercise.replace("<randomBoolean>", Math.floor(Math.random() * 2) === true);
+
 	// replace the <randomName> placeholder with a random name
 	exercise = exercise.replace("<randomName>", names[Math.floor(Math.random() * names.length)]);
 
@@ -49,7 +52,8 @@ export const javascript = [
 
 	// variables
 	"let <variableName> = <randomNumber><;>",
-	"const <variableName> = <'><randomName><'><;>",
+	"const <variableName> = <'><randomString><'><;>",
+	"var <variableName> = <randomBoolean><;>",
 
 	// comment syntax
 	"console.log(<variableName>)<;>",
@@ -63,29 +67,4 @@ export const javascript = [
 
 export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time", "width", "height"];
 
-export const names = [
-	"Mario",
-	"Luigi",
-	"Peter",
-	"Bob",
-	"Joey",
-	"Aurelio",
-	"Evan",
-	"Donny",
-	"Foster",
-	"Dwayne",
-	"Grady",
-	"Quinton",
-	"Darin",
-	"Mickey",
-	"Hank",
-	"Kim",
-	"Peter",
-	"Jeremy",
-	"Jess",
-	"Jimmie",
-	"Vern",
-	"Pasquale",
-	"Romeo",
-	"Chris"
-];
+export const names = ["Mario", "Luigi", "Peter", "Bob", "Joey", "Aurelio", "Evan", "Donny", "Foster", "Dwayne"];
