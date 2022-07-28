@@ -15,6 +15,13 @@ export function generateExercise() {
 	// replace the <randomName> placeholder with a random name
 	exercise = exercise.replace("<randomName>", names[Math.floor(Math.random() * names.length)]);
 
+	// randomly replace the <params> placeholder with a random variable name
+	if (Math.floor(Math.random() * 2) === 1) {
+		exercise = exercise.replace("<params>", variableNames[Math.floor(Math.random() * variableNames.length)]);
+	} else {
+		exercise = exercise.replace("<params>", "");
+	}
+
 	// replace the <;> placeholder with a semicolon if semicolons are enabled
 	if (semicolon) {
 		exercise = exercise.replaceAll("<;>", ";");
@@ -33,19 +40,28 @@ export function generateExercise() {
 }
 
 export const javascript = [
-	"function <variableName>()",
+	// functions
+	"function <variableName>(<params>) {",
+	"export async function <variableName>(<params>) {",
+	"async function <variableName>(<params>) {",
+	"export const <variableName> = async (<params>) => {",
+	"export const <variableName> = (<params>) => {",
+
+	// variables
 	"let <variableName> = <randomNumber><;>",
 	"const <variableName> = <'><randomName><'><;>",
+
+	// comment syntax
 	"console.log(<variableName>)<;>",
+
+	// scripts
 	"npm run dev",
 	"npm run test",
 	"npm run build",
-	"npm run format",
-	"export async function <variableName>() {",
-	"export const <variableName> = async () => {"
+	"npm run format"
 ];
 
-export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time", "width", "height", ""];
+export const variableNames = ["name", "age", "isMobile", "length", "velocity", "speed", "time", "width", "height"];
 
 export const names = [
 	"Mario",
