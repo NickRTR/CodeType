@@ -8,6 +8,12 @@ export async function handle({ event, resolve }) {
 }
 
 export function getSession(event) {
+	if (!event.locals.desktop) {
+		return {
+			desktop: false
+		};
+	}
+
 	return {
 		desktop: event.locals.desktop
 	};
