@@ -2,7 +2,7 @@
 	export async function load({ session }) {
 		if (session.desktop === false) {
 			return {
-				status: 304,
+				status: 302,
 				redirect: "/mobile"
 			};
 		}
