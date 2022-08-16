@@ -6,31 +6,24 @@ export async function POST({ request }) {
 	const form = await request.formData();
 	const email = form.get("email");
 
-	if (typeof email !== "string") {
-		return {
-			status: 400,
-			body: {
-				error: "Enter a valid email."
-			}
-		};
-	}
+	let errorMessage;
 
-	if (!email) {
-		return {
-			status: 400,
-			body: {
-				error: "email is required."
-			}
-		};
+	// TODO: Add email validation
+	if (!email || typeof email !== "string") {
+		errorMessage = "Enter a valid email.";
 	}
 
 	const response = await supabase.auth.signIn({ email });
 
 	if (response.error) {
+		errorMessage = response.error;
+	}
+
+	if (errorMessage) {
 		return {
 			status: 400,
 			body: {
-				error: response.error
+				error: errorMessage
 			}
 		};
 	}
@@ -38,7 +31,7 @@ export async function POST({ request }) {
 	return {
 		status: 200,
 		body: {
-			success: "Success, Look into your inbox."
+			success: "Success, look into your inbox."
 		}
 		// headers: {
 		// 	"Set-Cookie": cookie.serialize("session", user.userAuthToken, {
