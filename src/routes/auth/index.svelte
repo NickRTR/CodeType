@@ -12,8 +12,6 @@
 </script>
 
 <script>
-	import { session } from "$app/stores";
-
 	// these props are passed from the page endpoint
 	// so the user can get feedback if JavaScript doesn't work
 	export let error;
@@ -34,8 +32,6 @@
 		if (response.error) {
 			error = response.error;
 		}
-
-		$session.user = response.user;
 
 		form.reset();
 	}
