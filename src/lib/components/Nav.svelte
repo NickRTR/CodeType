@@ -4,44 +4,60 @@
 </script>
 
 <nav>
-	<h1>Syntype</h1>
-	<div class="settings">
-		<p
-			class="disabled"
-			class:enabled={$settings.semicolon}
-			on:click={() => {
-				$settings.semicolon = !$settings.semicolon;
-			}}
-		>
-			semicolon
-		</p>
-		<span class="settingsDivider" />
-		<p
-			on:click={() => {
-				$settings.doubleQuotes = !$settings.doubleQuotes;
-			}}
-		>
-			{#if $settings.doubleQuotes}
-				double quotes
-			{:else}
-				single quotes
-			{/if}
-		</p>
-	</div>
+	<article>
+		<div class="settings">
+			<p
+				class="disabled"
+				class:enabled={$settings.semicolon}
+				on:click={() => {
+					$settings.semicolon = !$settings.semicolon;
+				}}
+			>
+				semicolon
+			</p>
+			<span class="settingsDivider" />
+			<p
+				on:click={() => {
+					$settings.doubleQuotes = !$settings.doubleQuotes;
+				}}
+			>
+				{#if $settings.doubleQuotes}
+					double quotes
+				{:else}
+					single quotes
+				{/if}
+			</p>
+		</div>
+		<h1>Syntype</h1>
+		<a class="authentication" href="/auth" title="authentication">Auth</a>
+	</article>
 	<Divider />
 </nav>
 
 <style>
+	article {
+		display: grid;
+		grid-template-columns: 1fr 2fr 1fr;
+		align-items: center;
+		padding-inline: 1rem;
+	}
+
 	h1 {
-		margin-top: 0.8rem;
-		margin-bottom: 0;
+		text-align: center;
+		margin-block: 0;
 		font-size: 2rem;
 	}
 
 	.settings {
 		margin: 0;
 		display: flex;
-		justify-content: center;
+		justify-content: left;
+	}
+
+	.authentication {
+		display: flex;
+		justify-content: right;
+		color: var(--text);
 	}
 
 	.settings p {
