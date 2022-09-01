@@ -15,9 +15,7 @@
 		}).then(console.log("done"));
 	}
 
-	// these props are passed from the page endpoint
-	// so the user can get feedback if JavaScript doesn't work
-	export let errors;
+	let error;
 
 	// this runs on the client when JavaScript is available
 	// so we can just reuse the existing `error` and `success` props
@@ -30,30 +28,70 @@
 		});
 		let response = await res.json();
 
-		console.log(response);
-
 		if (response.error) {
-			errors.error = response.error;
+			error = response.error;
 		}
 
 		form.reset();
 	}
 </script>
 
-<form on:submit|preventDefault={login} method="post" autocomplete="off">
-	<div>
-		<label for="email">email</label>
-		<input id="email" name="email" type="email" required />
-	</div>
+<body>
+	<h1>Login / Signup</h1>
 
-	{#if errors?.error}
-		<p class="error">{errors.error}</p>
-	{/if}
+	<p id="description">Enter your email address to login or signup. You will then receive an email, maybe tagged as spam, with a confirmation link.</p>
 
-	<button type="submit">Login</button>
-</form>
+	<form on:submit|preventDefault={login} method="post" autocomplete="off">
+		<div>
+			<input id="email" name="email" placeholder="email" type="text" required />
+		</div>
+
+		{#if error}
+			<p class="error">Error: {error}</p>
+		{/if}
+
+		<button type="submit">Login</button>
+	</form>
+</body>
 
 <style>
+	#description {
+		max-width: 400px;
+		margin-inline: auto;
+	}
+
+	input {
+		border-radius: 0.7rem;
+		border: 2px solid var(--text);
+		padding: 0.2rem 0.25rem;
+		outline: none;
+		transition: border 0.1s ease-in-out;
+		font-size: 0.95rem;
+	}
+
+	input:hover,
+	input:focus {
+		border-color: var(--accent);
+	}
+
+	button {
+		font-size: 1rem;
+		font-weight: bold;
+		background-color: var(--accent);
+		margin-top: 0.75rem;
+		border-radius: 1rem;
+		padding: 0.6rem 1.1rem;
+		outline: none;
+		border: none;
+		box-shadow: none;
+		transition: box-shadow 0.1s ease-in-out;
+	}
+
+	button:hover,
+	button:focus {
+		box-shadow: 1px 1px 5px white;
+	}
+
 	.error {
 		color: tomato;
 	}
