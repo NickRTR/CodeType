@@ -1,20 +1,7 @@
-<script context="module">
-	export function load({ session, props }) {
-		if (session.user) {
-			return {
-				status: 302,
-				redirect: "/"
-			};
-		}
-
-		return { props };
-	}
-</script>
-
 <script>
 	// these props are passed from the page endpoint
 	// so the user can get feedback if JavaScript doesn't work
-	export let error;
+	export let errors;
 
 	// this runs on the client when JavaScript is available
 	// so we can just reuse the existing `error` and `success` props
@@ -30,7 +17,7 @@
 		console.log(response);
 
 		if (response.error) {
-			error = response.error;
+			errors.error = response.error;
 		}
 
 		form.reset();
@@ -43,8 +30,8 @@
 		<input id="email" name="email" type="email" required />
 	</div>
 
-	{#if error}
-		<p class="error">{error}</p>
+	{#if errors?.error}
+		<p class="error">{errors.error}</p>
 	{/if}
 
 	<button type="submit">Login</button>
