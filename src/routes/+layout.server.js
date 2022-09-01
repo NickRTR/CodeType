@@ -1,4 +1,5 @@
 import { parse } from "cookie";
+import supabase from "$lib/supabase";
 
 export async function load({ request }) {
 	const userAgent = request.headers.get("user-agent");
@@ -8,12 +9,18 @@ export async function load({ request }) {
 	if (cookieString !== null) {
 		const cookies = parse(request.headers.get("cookie"));
 		if (cookies.auth) {
+			const user = await supabase.auth.api.getUser(cookies.auth);
 			return {
 				user: {
-					token: cookies.auth
+					email: user.email,
+					id: user.id
 				},
 				desktop
 			};
 		}
+
+		return {
+			desktop
+		};
 	}
 }
