@@ -43,7 +43,7 @@
 
 	<form on:submit|preventDefault={login} method="post" autocomplete="off">
 		<div>
-			<input id="email" name="email" placeholder="email" type="text" required />
+			<input id="email" name="email" placeholder="email" type="email" required />
 		</div>
 
 		{#if error}
