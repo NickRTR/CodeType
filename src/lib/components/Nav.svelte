@@ -1,11 +1,13 @@
 <script>
-	import Divider from "$lib/components/Divider.svelte";
 	import { settings } from "$lib/persistentStores";
+	import { page } from "$app/stores";
+
+	import Divider from "$lib/components/Divider.svelte";
 </script>
 
 <nav>
 	<article>
-		<div class="settings">
+		<aside class="settings">
 			<p
 				class="disabled"
 				class:enabled={$settings.semicolon}
@@ -27,9 +29,17 @@
 					single quotes
 				{/if}
 			</p>
-		</div>
+		</aside>
 		<h1>Syntype</h1>
-		<a class="authentication" href="/auth" title="authentication">Auth</a>
+		<aside class="authentication">
+			{#if $page.data.user}
+				<a href="/account" title="authentication" sveltekit-data-prefetch>Dashboard</a>
+				<span class="authDivider" />
+				<a href="/account/logout" title="logout" sveltekit-data-prefetch>Logout</a>
+			{:else}
+				<a href="/account/login" title="login" sveltekit-data-prefetch>Login</a>
+			{/if}
+		</aside>
 	</article>
 	<Divider />
 </nav>
@@ -54,12 +64,6 @@
 		justify-content: left;
 	}
 
-	.authentication {
-		display: flex;
-		justify-content: right;
-		color: var(--text);
-	}
-
 	.settings p {
 		text-decoration: underline;
 		cursor: pointer;
@@ -76,5 +80,18 @@
 
 	.settingsDivider {
 		margin-inline: 1rem;
+	}
+
+	.authentication {
+		display: flex;
+		justify-content: right;
+	}
+
+	.authentication a {
+		color: var(--text);
+	}
+
+	.authDivider {
+		margin-inline: 0.25rem;
 	}
 </style>

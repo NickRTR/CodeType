@@ -9,7 +9,7 @@
 	}
 
 	async function setCookie() {
-		fetch("/auth/cookie", {
+		fetch("/account/cookie", {
 			method: "POST",
 			body: JSON.stringify({ token })
 		}).then(console.log("done"));

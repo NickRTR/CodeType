@@ -1,3 +1,4 @@
+import { redirect } from "@sveltejs/kit";
 import supabase from "$lib/supabase";
 
 export async function POST({ request }) {
@@ -24,4 +25,6 @@ export async function POST({ request }) {
 			}
 		};
 	}
+
+	throw redirect(307, "/account");
 }
