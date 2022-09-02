@@ -12,8 +12,8 @@ export async function load({ request }) {
 			const user = await supabase.auth.api.getUser(cookies.auth);
 			return {
 				user: {
-					email: user.email,
-					id: user.id
+					email: user.user.email,
+					id: user.user.id
 				},
 				desktop
 			};

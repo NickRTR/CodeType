@@ -5,4 +5,8 @@ export async function load({ parent }) {
 	if (!user) {
 		throw redirect(307, "/account/login");
 	}
+
+	return {
+		user
+	};
 }
