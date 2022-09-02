@@ -31,10 +31,11 @@
 		<section>
 			<button
 				type="button"
+				title="Resume"
 				on:click={() => {
 					resume();
-				}}>Resume</button
-			>
+				}}
+			>Resume</button>
 		</section>
 	</main>
 </body>
@@ -47,21 +48,5 @@
 
 	article p {
 		margin-inline: 1rem;
-	}
-
-	section button {
-		cursor: pointer;
-		border-radius: 1rem;
-		padding: 0.5rem;
-		font-weight: bold;
-		font-size: 1rem;
-		background-color: var(--accent);
-		outline: none;
-		border: none;
-		transition: box-shadow 0.2s ease-in;
-	}
-
-	section button:is(:focus, :hover) {
-		box-shadow: 2px 3px 10px var(--grey);
 	}
 </style>
