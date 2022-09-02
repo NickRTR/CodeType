@@ -1,4 +1,5 @@
 import { settings } from "$lib/persistentStores";
+import { resetStats } from "$lib/stores";
 import { get } from "svelte/store";
 
 import { variableNames } from "$lib/exercises/variableNames";
@@ -6,6 +7,8 @@ import { strings } from "$lib/exercises/strings";
 import { javascript } from "$lib/exercises/javascript";
 
 export default function generateExercise() {
+	resetStats();
+
 	let exercise = javascript[Math.floor(Math.random() * javascript.length)];
 
 	exercise = replaceVariableName(exercise);

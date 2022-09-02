@@ -1,5 +1,5 @@
 <script>
-	import { stats, resetStats } from "$lib/stores";
+	import { stats } from "$lib/stores";
 	import { settings } from "$lib/persistentStores";
 	import generateExercise from "$lib/exercises/generator";
 
@@ -33,7 +33,6 @@
 		// reset on esc
 		if (event.key === "Escape") {
 			input = "";
-			resetStats();
 			exercise = generateExercise();
 		}
 
@@ -66,7 +65,6 @@
 		$stats.accuracy = 100 - ($stats.mistakes / exercise.length) * 100;
 
 		input = "";
-		exercise = generateExercise();
 		startTime = undefined;
 	}
 
