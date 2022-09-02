@@ -4,7 +4,6 @@
 	const token = new URLSearchParams($page.url.hash.substring(1)).get("access_token");
 
 	if (token) {
-		console.log("Access Token: " + token);
 		setCookie();
 	}
 
@@ -12,14 +11,19 @@
 		fetch("/account/cookie", {
 			method: "POST",
 			body: JSON.stringify({ token })
-		}).then(console.log("done"));
+		});
 	}
 
 	let error;
+	let success;
 
 	// this runs on the client when JavaScript is available
 	// so we can just reuse the existing `error` and `success` props
 	async function login(event) {
+		// reset error and success messages
+		error = undefined;
+		success = undefined;
+
 		const form = event.target;
 		const res = await fetch(form.action, {
 			method: form.method,
@@ -28,8 +32,9 @@
 		});
 		let response = await res.json();
 
-		if (response.error) {
-			error = response.error;
+		if (response.errors) {
+			error = response.errors.message;
+		} else {
 		}
 
 		form.reset();
@@ -46,18 +51,25 @@
 			<input id="email" name="email" placeholder="email" type="email" required />
 		</div>
 
+		<button type="submit">Login</button>
 		{#if error}
 			<p class="error">Error: {error}</p>
 		{/if}
 
-		<button type="submit">Login</button>
+		{#if success}
+			<p class="success">{success}</p>
+		{/if}
 	</form>
 </body>
 
 <style>
-	#description {
+	body {
 		max-width: 400px;
 		margin-inline: auto;
+	}
+
+	#description {
+		margin-block: 0;
 	}
 
 	input {
@@ -67,6 +79,7 @@
 		outline: none;
 		transition: border 0.1s ease-in-out;
 		font-size: 0.95rem;
+		margin-block: 0.75rem;
 	}
 
 	input:hover,
@@ -78,13 +91,13 @@
 		font-size: 1rem;
 		font-weight: bold;
 		background-color: var(--accent);
-		margin-top: 0.75rem;
 		border-radius: 1rem;
 		padding: 0.6rem 1.1rem;
 		outline: none;
 		border: none;
 		box-shadow: none;
 		transition: box-shadow 0.1s ease-in-out;
+		user-select: none;
 	}
 
 	button:hover,
@@ -94,5 +107,11 @@
 
 	.error {
 		color: tomato;
+		margin-block: 0.5rem;
+	}
+
+	.success {
+		color: lime;
+		margin-block: 0.5rem;
 	}
 </style>

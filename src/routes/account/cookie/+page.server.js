@@ -21,5 +21,5 @@ export async function POST({ request, setHeaders }) {
 		})
 	});
 
-	throw redirect(307, "/");
+	throw redirect(307, "/account");
 }

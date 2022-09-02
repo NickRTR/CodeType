@@ -10,7 +10,9 @@ export async function POST({ request }) {
 	if (response.error) {
 		return {
 			status: response.error.status,
-			error: response.error.message
+			errors: {
+				message: response.error.message
+			}
 		};
 	}
 
