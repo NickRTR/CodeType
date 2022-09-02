@@ -1,19 +1,4 @@
 <script>
-	import { page } from "$app/stores";
-
-	const token = new URLSearchParams($page.url.hash.substring(1)).get("access_token");
-
-	if (token) {
-		setCookie();
-	}
-
-	async function setCookie() {
-		fetch("/account/cookie", {
-			method: "POST",
-			body: JSON.stringify({ token })
-		});
-	}
-
 	let error;
 	let success;
 
