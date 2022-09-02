@@ -3,6 +3,10 @@
 	import Footer from "$lib/components/Footer.svelte";
 </script>
 
+<svelte:head>
+	<title>Syntype</title>
+</svelte:head>
+
 <body>
 	<Nav />
 

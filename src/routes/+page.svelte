@@ -1,14 +1,3 @@
-<script context="module">
-	export async function load({ session }) {
-		if (session.desktop === false) {
-			return {
-				status: 302,
-				redirect: "/mobile"
-			};
-		}
-	}
-</script>
-
 <script>
 	import Input from "$lib/components/Input.svelte";
 	import Stats from "$lib/components/Stats.svelte";
