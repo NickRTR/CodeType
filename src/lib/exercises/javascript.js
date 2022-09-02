@@ -14,7 +14,7 @@ export const javascript = [
 
 	// common syntax
 	"console.log(<variableName>)<;>",
-	"import { <variableName> } from <'>$lib/components/<variableName><'>",
+	"import { <variableName> } from <'>$lib/components/<variableName><'><;>",
 
 	// scripts
 	"npm run dev",

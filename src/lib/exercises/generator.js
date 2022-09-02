@@ -21,8 +21,9 @@ export default function generateExercise() {
 }
 
 function replaceVariableName(exercise) {
-	// replaces the <varName> placeholder with a random variable name
-	return exercise.replace("<variableName>", variableNames[Math.floor(Math.random() * variableNames.length)]);
+	// replaces the <variableName> placeholder with a random variable name
+	// multiple <variableName> placeholders are replaced with the same variable name
+	return exercise.replaceAll("<variableName>", variableNames[Math.floor(Math.random() * variableNames.length)]);
 }
 
 function replaceRandomNumber(exercise) {
