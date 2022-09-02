@@ -36,7 +36,8 @@
 			<input id="email" name="email" placeholder="email" type="email" required />
 		</div>
 
-		<button type="submit">Login</button>
+		<button type="submit" title="Login">Login</button>
+
 		{#if error}
 			<p class="error">Error: {error}</p>
 		{/if}

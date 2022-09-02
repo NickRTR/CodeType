@@ -31,6 +31,7 @@
 		<section>
 			<button
 				type="button"
+				title="Resume"
 				on:click={() => {
 					resume();
 				}}>Resume</button
