@@ -7,7 +7,7 @@ export async function load({ request }) {
 
 	const cookieString = request.headers.get("cookie");
 	if (cookieString !== null) {
-		const cookies = parse(request.headers.get("cookie"));
+		const cookies = parse(cookieString);
 		if (cookies.auth) {
 			const user = await supabase.auth.api.getUser(cookies.auth);
 			return {

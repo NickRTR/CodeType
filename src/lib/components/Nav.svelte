@@ -19,6 +19,16 @@
 			</p>
 			<span class="settingsDivider" />
 			<p
+				class="disabled"
+				class:enabled={$settings.persistStats}
+				on:click={() => {
+					$settings.persistStats = !$settings.persistStats;
+				}}
+			>
+				persistStats
+			</p>
+			<span class="settingsDivider" />
+			<p
 				on:click={() => {
 					$settings.doubleQuotes = !$settings.doubleQuotes;
 				}}

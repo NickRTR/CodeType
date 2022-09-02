@@ -46,6 +46,7 @@
 		// on mistake, increase mistakes counter
 		if (event.key !== exercise[input.length]) {
 			$stats.mistakes++;
+			$stats.commonMistakes = [...$stats.commonMistakes, exercise[input.length]];
 		}
 
 		input += event.key;
@@ -60,6 +61,8 @@
 	}
 
 	function submitInput() {
+		if ($settings.persistStats) persistStats();
+
 		submitted = true;
 
 		$stats.accuracy = 100 - ($stats.mistakes / exercise.length) * 100;
@@ -100,6 +103,27 @@
 		}
 		const WPS = wordCount / time;
 		return WPS * 60;
+	}
+
+	async function persistStats() {
+		const res = await fetch("/api/persistStats", {
+			method: "POST",
+			body: JSON.stringify({
+				time: $stats.time,
+				mistakes: $stats.mistakes,
+				commonMistakes: $stats.commonMistakes,
+				accuracy: $stats.accuracy,
+				WPM: $stats.WPM,
+				CPM: $stats.CPM
+			})
+		});
+
+		const data = await res.json();
+
+		if (data.error) {
+			// TODO: Use Notification Toasts
+			alert("Error while persisting stats: " + data.error);
+		}
 	}
 </script>
 
