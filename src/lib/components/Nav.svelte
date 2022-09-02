@@ -30,7 +30,7 @@
 				{/if}
 			</p>
 		</aside>
-		<h1>Syntype</h1>
+		<h1><a href="/" title="Home" sveltekit-data-prefetch>Syntype</a></h1>
 		<aside class="authentication">
 			{#if $page.data.user}
 				<a href="/account" title="authentication" sveltekit-data-prefetch>Dashboard</a>
@@ -56,6 +56,11 @@
 		text-align: center;
 		margin-block: 0;
 		font-size: 2rem;
+	}
+
+	h1 a {
+		color: var(--text);
+		text-decoration: none;
 	}
 
 	.settings {
