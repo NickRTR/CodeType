@@ -61,11 +61,11 @@
 	}
 
 	function submitInput() {
+		$stats.accuracy = 100 - ($stats.mistakes / exercise.length) * 100;
+
 		if ($settings.persistStats) persistStats();
 
 		submitted = true;
-
-		$stats.accuracy = 100 - ($stats.mistakes / exercise.length) * 100;
 
 		input = "";
 		startTime = undefined;
@@ -124,7 +124,7 @@
 
 		if (data.error) {
 			// TODO: Use Notification Toasts
-			alert("Error while persisting stats: " + data.error);
+			alert("Error while persisting stats: " + data.error.message);
 		} else {
 			console.log("Successfully saved stats.");
 		}

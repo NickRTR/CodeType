@@ -1,6 +1,13 @@
 import { redirect } from "@sveltejs/kit";
 import supabase from "$lib/supabase";
 
+export async function load({ parent }) {
+	const { user } = await parent();
+	if (user) {
+		throw redirect(307, "/account");
+	}
+}
+
 export async function POST({ request }) {
 	const form = await request.formData();
 	const email = form.get("email");
