@@ -109,6 +109,8 @@
 		const res = await fetch("/api/persistStats", {
 			method: "POST",
 			body: JSON.stringify({
+				exercise,
+				input,
 				time: $stats.time,
 				mistakes: $stats.mistakes,
 				commonMistakes: $stats.commonMistakes,
@@ -123,6 +125,8 @@
 		if (data.error) {
 			// TODO: Use Notification Toasts
 			alert("Error while persisting stats: " + data.error);
+		} else {
+			console.log("Successfully saved stats.");
 		}
 	}
 </script>
