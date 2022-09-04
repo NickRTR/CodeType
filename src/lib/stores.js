@@ -1,4 +1,9 @@
 import { writable } from "svelte/store";
+import generateExercise from "$lib/exercises/generator";
+
+export const exercise = writable(generateExercise(false));
+
+export const practiceMode = writable(true);
 
 export const stats = writable({
 	time: 0,

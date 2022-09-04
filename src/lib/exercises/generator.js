@@ -6,8 +6,8 @@ import { variableNames } from "$lib/exercises/variableNames";
 import { strings } from "$lib/exercises/strings";
 import { javascript } from "$lib/exercises/javascript";
 
-export default function generateExercise() {
-	resetStats();
+export default function generateExercise(reset) {
+	if (reset) resetStats();
 
 	let exercise = javascript[Math.floor(Math.random() * javascript.length)];
 

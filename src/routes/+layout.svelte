@@ -1,7 +1,22 @@
 <script>
+	import { exercise, practiceMode } from "$lib/stores";
+	import generateExercise from "$lib/exercises/generator";
+	import { goto } from "$app/navigation";
+
 	import Nav from "$lib/components/Nav.svelte";
 	import Footer from "$lib/components/Footer.svelte";
+
+	function handleInput(event) {
+		// reset on esc
+		if (event.key === "Escape") {
+			$exercise = generateExercise();
+			$practiceMode = true;
+			goto("/");
+		}
+	}
 </script>
+
+<svelte:window on:keydown={handleInput} />
 
 <svelte:head>
 	<title>Syntype</title>

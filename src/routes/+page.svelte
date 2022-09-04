@@ -1,14 +1,14 @@
 <script>
+	import { practiceMode } from "$lib/stores";
+
 	import Input from "$lib/components/Input.svelte";
 	import Stats from "$lib/components/Stats.svelte";
-
-	let displayStats = false;
 </script>
 
 <body>
-	{#if displayStats}
-		<Stats bind:displayStats />
+	{#if $practiceMode}
+		<Input />
 	{:else}
-		<Input bind:submitted={displayStats} />
+		<Stats />
 	{/if}
 </body>

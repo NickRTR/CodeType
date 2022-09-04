@@ -1,8 +1,6 @@
 <script>
-	import { stats, resetStats } from "$lib/stores";
+	import { stats, resetStats, practiceMode } from "$lib/stores";
 	import { page } from "$app/stores";
-
-	export let displayStats;
 
 	function handleInput(event) {
 		// generate new exercise and exit stats if esc, enter or space is pressed
@@ -12,7 +10,7 @@
 	}
 
 	function resume() {
-		displayStats = false;
+		$practiceMode = true;
 		resetStats();
 	}
 </script>
