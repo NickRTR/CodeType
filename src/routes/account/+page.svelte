@@ -36,7 +36,7 @@
 
 	<hr />
 
-	<p>Total practises: {data.stats.length}</p>
+	<p>Total exercises: {data.stats.length}</p>
 	<p>Total time trained: {sum("time")}s</p>
 
 	<p>Average CPM: {average("CPM")}</p>
