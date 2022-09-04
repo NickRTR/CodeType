@@ -43,7 +43,7 @@
 	:global(button) {
 		cursor: pointer;
 		border-radius: 1rem;
-		padding: 0.6rem 0.7rem;
+		padding: 0.5rem;
 		font-weight: bold;
 		font-size: 1rem;
 		background-color: var(--accent);

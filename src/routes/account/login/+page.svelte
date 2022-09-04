@@ -74,21 +74,7 @@
 	}
 
 	button {
-		font-size: 1rem;
-		font-weight: bold;
-		background-color: var(--accent);
-		border-radius: 1rem;
 		padding: 0.6rem 1.1rem;
-		outline: none;
-		border: none;
-		box-shadow: none;
-		transition: box-shadow 0.1s ease-in-out;
-		user-select: none;
-	}
-
-	button:hover,
-	button:focus {
-		box-shadow: 1px 1px 5px white;
 	}
 
 	.error {
