@@ -18,9 +18,8 @@ export async function load({ request }) {
 				desktop
 			};
 		}
-
-		return {
-			desktop
-		};
 	}
+	return {
+		desktop
+	};
 }
