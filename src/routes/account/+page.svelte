@@ -37,7 +37,27 @@
 
 		const uniqueDates = [...new Set(dates)];
 
-		return uniqueDates.length;
+		let longestStreak = 0;
+		let streak = 0;
+		for (let i = 1; i < uniqueDates.length; i++) {
+			const date = uniqueDates[i];
+			if (date > uniqueDates[i - 1]) {
+				streak++;
+				if (streak > longestStreak) {
+					longestStreak = streak;
+				}
+			} else {
+				streak = 0;
+			}
+		}
+
+		let days = {
+			uniqueDates: uniqueDates.length,
+			streak,
+			longestStreak
+		};
+
+		return days;
 	}
 </script>
 
@@ -47,7 +67,9 @@
 
 	<hr />
 
-	<p>Total days practiced on: {days()}</p>
+	<p>Total days practiced on: {days().uniqueDates}</p>
+	<p>Current Streak: {days().streak}</p>
+	<p>Longest Streak: {days().longestStreak}</p>
 	<p>Total exercises: {data.stats.length}</p>
 	<p>Total time trained: {calculate("sum", "time")}s</p>
 
