@@ -2,20 +2,32 @@
 	let error;
 	let success;
 
-	// this runs on the client when JavaScript is available
-	// so we can just reuse the existing `error` and `success` props
-	async function login(event) {
+	let email = "";
+
+	async function login() {
 		// reset error and success messages
 		error = undefined;
 		success = undefined;
 
-		const form = event.target;
-		const res = await fetch(form.action, {
-			method: form.method,
-			body: new FormData(form),
+		const res = await fetch("/account/login", {
+			method: "POST",
+			body: JSON.stringify({ email }),
 			headers: { accept: "application/json" }
 		});
-		let response = await res.json();
+
+		let response;
+
+		try {
+			response = await res.json();
+		} catch (error) {
+			console.log(error);
+			// Ignore "Unexpected end of JSON input" error
+			if (error.message.includes("Unexpected end of JSON input")) {
+				success = "Success 🚀!";
+			} else {
+				throw new Error(error);
+			}
+		}
 
 		if (response.errors) {
 			error = response.errors.message;
@@ -23,7 +35,7 @@
 			success = "Success 🚀!";
 		}
 
-		form.reset();
+		email = "";
 	}
 </script>
 
@@ -32,19 +44,19 @@
 
 	<p id="description">Enter your email address to login or signup. You will then receive an email, maybe tagged as spam, with a confirmation link.</p>
 
-	<form on:submit|preventDefault={login} method="post" autocomplete="off">
+	<form on:submit|preventDefault={login} autocomplete="off">
 		<div>
-			<input id="email" name="email" placeholder="email" type="email" required />
+			<input id="email" name="email" placeholder="email" type="email" bind:value={email} required />
 		</div>
 
 		<button type="submit" title="Login">Login</button>
 
-		{#if error}
-			<p class="error">Error: {error}</p>
-		{/if}
-
 		{#if success}
 			<p class="success">{success}</p>
+		{/if}
+
+		{#if error}
+			<p class="error">Error: {error}</p>
 		{/if}
 	</form>
 </body>

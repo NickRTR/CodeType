@@ -9,8 +9,7 @@ export async function load({ parent }) {
 }
 
 export async function POST({ request }) {
-	const form = await request.formData();
-	const email = form.get("email");
+	const { email } = await request.json();
 
 	const response = await supabase.auth.signIn({ email });
 
@@ -18,10 +17,8 @@ export async function POST({ request }) {
 		return {
 			status: response.error.status,
 			errors: {
-				message: response.error.message
+				message: JSON.stringify(response.error.message)
 			}
 		};
 	}
-
-	throw redirect(307, "/account");
 }
