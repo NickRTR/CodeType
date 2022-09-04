@@ -20,6 +20,7 @@
 		if (response.errors) {
 			error = response.errors.message;
 		} else {
+			success = "Success 🚀!";
 		}
 
 		form.reset();
