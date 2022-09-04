@@ -55,4 +55,8 @@
 	:global(button:is(:focus, :hover)) {
 		box-shadow: 2px 3px 10px var(--grey);
 	}
+
+	:global(button, a) {
+		user-select: none;
+	}
 </style>

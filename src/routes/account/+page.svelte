@@ -18,9 +18,18 @@
 
 <body>
 	<h1>Dashboard</h1>
-	<p>Hello {data.user.email}</p>
+	<i>Hello {data.user.email}!</i>
+
+	<hr />
 
 	<p>Average CPM: {average("CPM")}</p>
 	<p>Average WPM: {average("WPM")}</p>
-	<p>Average accuracy: {average("accuracy")}</p>
+	<p>Average accuracy: {average("accuracy")}%</p>
 </body>
+
+<style>
+	body {
+		text-align: left;
+		margin: auto;
+	}
+</style>
