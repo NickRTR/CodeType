@@ -1,6 +1,11 @@
 <script>
 	import { stats, resetStats, practiceMode } from "$lib/stores";
 	import { page } from "$app/stores";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		document.getElementById("Resume").focus();
+	});
 
 	function handleInput(event) {
 		// generate new exercise and exit stats if space is pressed
@@ -31,6 +36,7 @@
 			<button
 				type="button"
 				title="Resume"
+				id="Resume"
 				on:click={() => {
 					resume();
 				}}>Resume</button
@@ -55,5 +61,6 @@
 	a {
 		color: var(--background);
 		text-decoration: none;
+		outline: none;
 	}
 </style>

@@ -2,6 +2,7 @@
 	import { stats, exercise, practiceMode } from "$lib/stores";
 	import { settings } from "$lib/persistentStores";
 	import generateExercise from "$lib/exercises/generator";
+	import { onMount } from "svelte";
 
 	let input = "";
 
@@ -10,9 +11,28 @@
 		$exercise = generateExercise();
 	});
 
-	exercise.subscribe(() => (input = ""));
-
 	let startTime;
+	let lastInput;
+
+	exercise.subscribe(() => ((input = ""), (startTime = undefined)));
+
+	// AFK detection
+	onMount(() => {
+		window.setInterval(function () {
+			if (startTime === undefined || lastInput === undefined) return;
+			const startToNow = new Date().getTime() - startTime.getTime();
+			const startToLastInput = lastInput.getTime() - startTime.getTime();
+			const AFK = startToNow - startToLastInput > 5000;
+			if (AFK) {
+				if (confirm("Thinking about your next step? Small Hint, the next character you should type is the one in grey, located on the right sight of your cursor ;).")) {
+					console.log("Resetting");
+					lastInput = undefined;
+					startTime = undefined;
+					input = "";
+				}
+			}
+		}, 2000);
+	});
 
 	function handleInput(event) {
 		$practiceMode = true;
@@ -41,6 +61,8 @@
 		}
 
 		input += event.key;
+
+		lastInput = new Date();
 
 		$stats.time = calcTime();
 		$stats.WPM = calcWPM($stats.time);
