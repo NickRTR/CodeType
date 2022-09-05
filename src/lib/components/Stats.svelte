@@ -3,8 +3,8 @@
 	import { page } from "$app/stores";
 
 	function handleInput(event) {
-		// generate new exercise and exit stats if esc, enter or space is pressed
-		if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+		// generate new exercise and exit stats if space is pressed
+		if (event.key === " ") {
 			resume();
 		}
 	}
