@@ -92,7 +92,6 @@
 
 	<hr />
 
-	<p>WPM course over the last 5 exercises:</p>
 	<Chart width="500px" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
 </body>
 
