@@ -3,8 +3,6 @@
 
 	export let data;
 
-	console.log(filterUniqueDates());
-
 	function filterKeyValues(key) {
 		return data.stats.map((stat) => {
 			return stat[key];
@@ -87,7 +85,7 @@
 	<p>Current Streak: {days().streak}</p>
 	<p>Longest Streak: {days().longestStreak}</p>
 	<p>Total exercises: {data.stats.length}</p>
-	<p>Total time trained: {calculate("sum", "time")}s</p>
+	<p>Total time trained: {Math.floor(calculate("sum", "time") / 60)}m {calculate("sum", "time") - Math.floor(calculate("sum", "time") / 60) * 60}s</p>
 
 	<p>Average CPM: {calculate("average", "CPM")}</p>
 	<p>Average WPM: {calculate("average", "WPM")}</p>
