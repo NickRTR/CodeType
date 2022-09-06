@@ -71,7 +71,13 @@
 		return days;
 	}
 
-	const graphLabels = cutDate(filterKeyValues("created_at").reverse().slice(0, 5));
+	let graphLabels = [];
+
+	for (let i = 0; i < 5; i++) {
+		const totalExercises = data.stats.length;
+		graphLabels.unshift(`Exercise ${totalExercises - i}`);
+	}
+
 	const graphData = [filterKeyValues("WPM").reverse().slice(0, 5), filterKeyValues("CPM").reverse().slice(0, 5), filterKeyValues("mistakes").reverse().slice(0, 5)];
 </script>
 
