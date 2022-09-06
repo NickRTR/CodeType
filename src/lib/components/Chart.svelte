@@ -55,6 +55,12 @@
 							display: true,
 							text: "Mistakes"
 						}
+					},
+					x: {
+						title: {
+							display: true,
+							text: "Exercise number"
+						}
 					}
 				}
 			}

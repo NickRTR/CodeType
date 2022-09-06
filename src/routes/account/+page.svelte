@@ -73,12 +73,12 @@
 
 	let graphLabels = [];
 
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 10; i++) {
 		const totalExercises = data.stats.length;
-		graphLabels.unshift(`Exercise ${totalExercises - i}`);
+		graphLabels.unshift(totalExercises - i);
 	}
 
-	const graphData = [filterKeyValues("WPM").reverse().slice(0, 5), filterKeyValues("CPM").reverse().slice(0, 5), filterKeyValues("mistakes").reverse().slice(0, 5)];
+	const graphData = [filterKeyValues("WPM").reverse().slice(0, 10), filterKeyValues("CPM").reverse().slice(0, 10), filterKeyValues("mistakes").reverse().slice(0, 10)];
 </script>
 
 <body>
