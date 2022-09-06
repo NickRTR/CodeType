@@ -57,7 +57,7 @@
 <style>
 	article {
 		display: grid;
-		grid-template-columns: 1fr 2fr 1fr;
+		grid-template-columns: 2fr 1fr 2fr;
 		align-items: center;
 		padding-inline: 1rem;
 	}
