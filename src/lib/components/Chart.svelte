@@ -22,7 +22,7 @@
 				labels,
 				datasets: [
 					{
-						label: `${title} over the last 5 runs`,
+						label: `${title}`,
 						data,
 						fill: true,
 						backgroundColor: "#FFC60090"

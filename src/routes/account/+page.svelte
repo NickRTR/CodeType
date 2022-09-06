@@ -89,6 +89,7 @@
 
 	<hr />
 
+	<p>WPM course over the last 5 exercises:</p>
 	<Chart width="400px" data={filterKeyValues("WPM").reverse().slice(0, 5)} labels={cutDate(filterKeyValues("created_at").reverse().slice(0, 5))} title="WPM" />
 </body>
 
