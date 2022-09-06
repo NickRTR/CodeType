@@ -1,5 +1,5 @@
 <script>
-	import Chart from "chart.js/auto/auto.js";
+	import { Chart, registerables } from "chart.js";
 	import { onMount } from "svelte";
 
 	export let width;
@@ -13,6 +13,7 @@
 	let canvas;
 
 	onMount(() => {
+		Chart.register(...registerables);
 		new Chart(canvas, {
 			type: "line",
 			data: {
