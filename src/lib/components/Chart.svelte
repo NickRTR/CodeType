@@ -8,7 +8,7 @@
 
 	export let data;
 	export let labels;
-	export let title;
+	export let titles;
 
 	let canvas;
 
@@ -19,12 +19,43 @@
 				labels,
 				datasets: [
 					{
-						label: `${title}`,
-						data,
+						label: titles[0],
+						data: data[0],
 						fill: true,
-						backgroundColor: "#FFC60090"
+						backgroundColor: "rgba(255, 99, 132, .8)"
+					},
+					{
+						label: titles[1],
+						data: data[1],
+						fill: true,
+						backgroundColor: "rgba(54, 162, 235, .8)"
+					},
+					{
+						label: titles[2],
+						data: data[2],
+						yAxisID: "B",
+						fill: true,
+						backgroundColor: "rgba(255, 206, 86, .8)"
 					}
 				]
+			},
+			options: {
+				scales: {
+					y: {
+						title: {
+							display: true,
+							text: "WPM and CPM"
+						}
+					},
+					B: {
+						position: "right",
+						beginAtZero: true,
+						title: {
+							display: true,
+							text: "Mistakes"
+						}
+					}
+				}
 			}
 		});
 	});

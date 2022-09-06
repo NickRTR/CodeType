@@ -69,6 +69,9 @@
 
 		return days;
 	}
+
+	const graphLabels = cutDate(filterKeyValues("created_at").reverse().slice(0, 5));
+	const graphData = [filterKeyValues("WPM").reverse().slice(0, 5), filterKeyValues("CPM").reverse().slice(0, 5), filterKeyValues("mistakes").reverse().slice(0, 5)];
 </script>
 
 <body>
@@ -90,7 +93,7 @@
 	<hr />
 
 	<p>WPM course over the last 5 exercises:</p>
-	<Chart width="400px" data={filterKeyValues("WPM").reverse().slice(0, 5)} labels={cutDate(filterKeyValues("created_at").reverse().slice(0, 5))} title="WPM" />
+	<Chart width="500px" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
 </body>
 
 <style>
