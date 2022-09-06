@@ -3,6 +3,8 @@
 
 	export let data;
 
+	console.log(filterUniqueDates());
+
 	function filterKeyValues(key) {
 		return data.stats.map((stat) => {
 			return stat[key];
@@ -49,9 +51,10 @@
 
 		let longestStreak = 0;
 		let streak = 0;
-		for (let i = 1; i < uniqueDates.length; i++) {
+		for (let i = 0; i < uniqueDates.length; i++) {
 			const date = uniqueDates[i];
-			if (date > uniqueDates[i - 1]) {
+			// or i === 0 to include first day, where uniqueDates[i - 1] is undefined
+			if (date > uniqueDates[i - 1] || i === 0) {
 				streak++;
 				if (streak > longestStreak) {
 					longestStreak = streak;
