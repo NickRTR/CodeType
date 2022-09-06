@@ -83,19 +83,19 @@
 
 <body>
 	<h1>Dashboard</h1>
-	<i>Hello {data.user.email}!</i>
+	<i><span>Hello</span> {data.user.email}!</i>
 
 	<hr />
 
-	<p>Total days practiced on: {days().uniqueDates}</p>
-	<p>Current Streak: {days().streak}</p>
-	<p>Longest Streak: {days().longestStreak}</p>
-	<p>Total exercises: {data.stats.length}</p>
-	<p>Total time trained: {Math.floor(calculate("sum", "time") / 60)}m {calculate("sum", "time") - Math.floor(calculate("sum", "time") / 60) * 60}s</p>
+	<p>Total days practiced on: <span>{days().uniqueDates}</span></p>
+	<p>Current Streak: <span>{days().streak} days</span></p>
+	<p>Longest Streak: <span>{days().longestStreak} days</span></p>
+	<p>Total exercises: <span>{data.stats.length}</span></p>
+	<p>Total time trained: <span>{Math.floor(calculate("sum", "time") / 60)}m {calculate("sum", "time") - Math.floor(calculate("sum", "time") / 60) * 60}s</span></p>
 
-	<p>Average CPM: {calculate("average", "CPM")}</p>
-	<p>Average WPM: {calculate("average", "WPM")}</p>
-	<p>Average accuracy: {calculate("average", "accuracy")}%</p>
+	<p>Average CPM: <span>{calculate("average", "CPM")}</span></p>
+	<p>Average WPM: <span>{calculate("average", "WPM")}</span></p>
+	<p>Average accuracy: <span>{calculate("average", "accuracy")}%</span></p>
 
 	<hr />
 
@@ -106,5 +106,9 @@
 	body {
 		text-align: left;
 		margin: auto;
+	}
+
+	span {
+		color: var(--accent);
 	}
 </style>
