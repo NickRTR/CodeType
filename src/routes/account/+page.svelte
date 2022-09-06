@@ -93,7 +93,7 @@
 
 	<hr />
 
-	<Chart width="500px" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
+	<Chart width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
 </body>
 
 <style>
