@@ -4,14 +4,11 @@
 
 	export let width;
 
-	console.log(width);
 	export let height;
 
 	export let data;
 	export let labels;
 	export let title;
-
-	console.log(data);
 
 	let canvas;
 
