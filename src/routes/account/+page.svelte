@@ -1,4 +1,6 @@
 <script>
+	import Chart from "$lib/components/Chart.svelte";
+
 	export let data;
 
 	function filterKeyValues(key) {
@@ -28,14 +30,22 @@
 		return Math.round(result, 2);
 	}
 
-	function days() {
-		const times = filterKeyValues("created_at");
-
-		const dates = times.map((time) => {
+	function cutDate(times) {
+		return times.map((time) => {
 			return time.substr(0, 10);
 		});
+	}
 
-		const uniqueDates = [...new Set(dates)];
+	function filterUniqueDates() {
+		const times = filterKeyValues("created_at");
+
+		const dates = cutDate(times);
+
+		return [...new Set(dates)];
+	}
+
+	function days() {
+		const uniqueDates = filterUniqueDates();
 
 		let longestStreak = 0;
 		let streak = 0;
@@ -76,6 +86,10 @@
 	<p>Average CPM: {calculate("average", "CPM")}</p>
 	<p>Average WPM: {calculate("average", "WPM")}</p>
 	<p>Average accuracy: {calculate("average", "accuracy")}%</p>
+
+	<hr />
+
+	<Chart width="400px" data={filterKeyValues("WPM").reverse().slice(0, 5)} labels={cutDate(filterKeyValues("created_at").reverse().slice(0, 5))} title="WPM" />
 </body>
 
 <style>
