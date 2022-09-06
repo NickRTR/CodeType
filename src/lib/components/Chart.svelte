@@ -40,6 +40,7 @@
 	}
 
 	figure canvas {
-		background-color: white;
+		background-color: var(--text);
+		border-radius: 0.75rem;
 	}
 </style>
