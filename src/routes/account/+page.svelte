@@ -1,5 +1,5 @@
 <script>
-	import Chart from "$lib/components/Chart.svelte";
+	import Graph from "$lib/components/Graph.svelte";
 
 	export let data;
 
@@ -73,12 +73,12 @@
 
 	let graphLabels = [];
 
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 15; i++) {
 		const totalExercises = data.stats.length;
 		graphLabels.unshift(totalExercises - i);
 	}
 
-	const graphData = [filterKeyValues("WPM").reverse().slice(0, 10), filterKeyValues("CPM").reverse().slice(0, 10), filterKeyValues("mistakes").reverse().slice(0, 10)];
+	const graphData = [filterKeyValues("WPM").reverse().slice(0, 15), filterKeyValues("CPM").reverse().slice(0, 15), filterKeyValues("mistakes").reverse().slice(0, 15)];
 </script>
 
 <body>
@@ -99,7 +99,7 @@
 
 	<hr />
 
-	<Chart width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
+	<Graph width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
 </body>
 
 <style>
