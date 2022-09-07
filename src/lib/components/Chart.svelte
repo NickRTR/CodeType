@@ -21,19 +21,19 @@
 				datasets: [
 					{
 						label: titles[0],
-						data: data[0],
+						data: data[0].reverse(),
 						fill: true,
 						backgroundColor: "rgba(255, 99, 132, .8)"
 					},
 					{
 						label: titles[1],
-						data: data[1],
+						data: data[1].reverse(),
 						fill: true,
 						backgroundColor: "rgba(54, 162, 235, .8)"
 					},
 					{
 						label: titles[2],
-						data: data[2],
+						data: data[2].reverse(),
 						yAxisID: "B",
 						fill: true,
 						backgroundColor: "rgba(255, 206, 86, .8)"
