@@ -8,7 +8,7 @@
 	}
 
 	async function setCookie() {
-		fetch("/account/verification", {
+		fetch("/api/verification", {
 			method: "POST",
 			body: JSON.stringify({ token })
 		});

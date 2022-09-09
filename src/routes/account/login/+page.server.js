@@ -1,4 +1,4 @@
-import { redirect } from "@sveltejs/kit";
+import { redirect, invalid } from "@sveltejs/kit";
 import supabase from "$lib/supabase";
 
 export async function load({ parent }) {
@@ -8,17 +8,23 @@ export async function load({ parent }) {
 	}
 }
 
-export async function POST({ request }) {
-	const { email } = await request.json();
+export const actions = {
+	default: async ({ request }) => {
+		const formData = await request.formData();
+		const email = formData.get("email");
 
-	const response = await supabase.auth.signIn({ email });
+		if (!email) {
+			return invalid(400, { error: "Please enter a valid email." });
+		}
 
-	if (response.error) {
+		const response = await supabase.auth.signIn({ email });
+
+		if (response.error) {
+			return invalid(400, { error: JSON.stringify(response.error.message) });
+		}
+
 		return {
-			status: response.error.status,
-			errors: {
-				message: JSON.stringify(response.error.message)
-			}
+			success: true
 		};
 	}
-}
+};
