@@ -10,6 +10,13 @@ export async function load({ request }) {
 		const cookies = parse(cookieString);
 		if (cookies.auth) {
 			const user = await supabase.auth.api.getUser(cookies.auth);
+
+			if (user.error) {
+				return {
+					desktop
+				};
+			}
+
 			return {
 				user: {
 					email: user.user.email,
