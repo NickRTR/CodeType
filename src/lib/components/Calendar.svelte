@@ -4,16 +4,13 @@
 	const firstDate = new Date(data[0]);
 	const lastDate = new Date(data[data.length - 1]);
 
-	function addDay(date) {
-		return new Date(date.setDate(date.getDate() + 1));
-	}
-
 	function createMonth(year, month) {
 		const date = getFirstDayOfMonth(year, month);
 
 		let days = [];
 		while (date.getMonth() === month) {
-			days.push(new Date(date));
+			// days[new Date(date)] = 0;
+			days.push(0);
 			date.setDate(date.getDate() + 1);
 		}
 
@@ -24,9 +21,9 @@
 		const monthDifference = getMonthDifference(firstDate, lastDate);
 
 		const months = [];
-		const year = Math.round(monthDifference / 12);
 		for (let month = 0; month <= monthDifference; month++) {
-			months.push(createMonth(firstDate.getFullYear() + year, month));
+			const year = Math.round(month / 12);
+			months.push(createMonth(firstDate.getFullYear() + year, firstDate.getMonth() + month));
 		}
 
 		let calendar = [];
@@ -36,6 +33,8 @@
 		while (i < months.length) {
 			calendar.push(months.slice(i, (i += 12)));
 		}
+
+		joinCalendarWithData(calendar);
 
 		return calendar;
 	}
@@ -48,37 +47,50 @@
 		return months <= 0 ? 0 : months;
 	}
 
-	function getMonthLength(year, month) {
-		console.log(month);
-		console.log(new Date(year, month, 0).getDate());
-		return new Date(year, month, 0).getDate();
-	}
-
 	function getFirstDayOfMonth(year, month) {
 		return new Date(year, month, 1);
 	}
 
-	function getLastDayOfMonth(date) {
-		return new Date(date.getFullYear(), date.getMonth(), 0);
+	function joinCalendarWithData(calendar) {
+		const count = {};
+
+		// count multiple exercises on same day
+		data.forEach((stat) => {
+			stat = new Date(stat);
+			console.log(stat);
+			count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] || 0) + 1;
+		});
+
+		Object.keys(count).forEach((date) => {
+			const dateObject = new Date(date);
+			calendar[0][0][dateObject.getDate()] = count[date];
+		});
+
+		console.log(calendar[0][0]);
 	}
 
 	const calendar = createCalendar(firstDate, lastDate);
-
-	console.log(calendar);
 </script>
 
 <main id="heatmap">
 	<p>Calendar</p>
 	{#each calendar as year}
 		{#each year as month}
-			{#each month as day, i}
-				<div class="day">{i}</div>
-			{/each}
+			<div class="days">
+				{#each Object.values(month) as day, i}
+					<div class="day">{day}</div>
+				{/each}
+			</div>
 		{/each}
 	{/each}
 </main>
 
 <style>
+	.days {
+		display: flex;
+		flex-grow: 4;
+	}
+
 	.day {
 		border: 2px solid grey;
 	}
