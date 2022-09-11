@@ -1,5 +1,6 @@
 <script>
 	import Graph from "$lib/components/Graph.svelte";
+	import Calendar from "$lib/components/Calendar.svelte";
 
 	export let data;
 
@@ -33,6 +34,18 @@
 	function cutDate(times) {
 		return times.map((time) => {
 			return time.substr(0, 10);
+		});
+	}
+
+	function cutYear(dates) {
+		return dates.map((date) => {
+			return date.substr(0, 4);
+		});
+	}
+
+	function cutMonth(dates) {
+		return dates.map((date) => {
+			return date.substr(5, 2);
 		});
 	}
 
@@ -79,6 +92,22 @@
 	}
 
 	const graphData = [filterKeyValues("WPM").reverse().slice(0, 15), filterKeyValues("CPM").reverse().slice(0, 15), filterKeyValues("mistakes").reverse().slice(0, 15)];
+
+	// function calenderData() {
+	// 	const dates = cutDate(filterKeyValues("created_at"));
+
+	// 	let years = cutYear(dates);
+	// 	years = [...new Set(years)];
+
+	// 	let monts = cutYear(dates);
+	// 	years = [...new Set(years)];
+
+	// 	return {
+	// 		dates,
+	// 		years,
+	// 		months
+	// 	};
+	// }
 </script>
 
 <body>
@@ -100,6 +129,8 @@
 	<hr />
 
 	<Graph width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
+
+	<Calendar data={filterKeyValues("created_at")} />
 </body>
 
 <style>
