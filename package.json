@@ -23,7 +23,6 @@
 		"chart.js": "^3.9.1",
 		"cookie": "^0.5.0",
 		"dotenv": "^16.0.1",
-		"svelte-heatmap": "^1.0.2",
 		"svelte-local-storage-store": "^0.2.6"
 	}
 }
