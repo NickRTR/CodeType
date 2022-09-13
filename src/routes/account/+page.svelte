@@ -58,13 +58,11 @@
 			const date = uniqueDates[i];
 			// or i === 0 to include first day, where uniqueDates[i - 1] is undefined
 			if (i === 0 || cutDay(date) - 1 === cutDay(uniqueDates[i - 1])) {
-				console.log("yeah");
 				streak++;
 				if (streak > longestStreak) {
 					longestStreak = streak;
 				}
 			} else {
-				console.log("breaks");
 				streak = 0;
 			}
 		}
