@@ -85,12 +85,25 @@
 </main>
 
 <style>
+	main {
+		display: inline-block;
+	}
+
 	.days {
-		display: flex;
-		flex-grow: 4;
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		gap: 0.25rem;
 	}
 
 	.day {
-		border: 2px solid grey;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--text);
+		filter: opacity(calc());
+		color: var(--background);
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 0.25rem;
 	}
 </style>
