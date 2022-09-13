@@ -57,7 +57,6 @@
 		// count multiple exercises on same day
 		data.forEach((stat) => {
 			stat = new Date(stat);
-			console.log(stat);
 			count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] || 0) + 1;
 		});
 
@@ -66,7 +65,7 @@
 			calendar[0][0][dateObject.getDate()] = count[date];
 		});
 
-		console.log(calendar[0][0]);
+		// console.log(calendar[0][0]);
 	}
 
 	const calendar = createCalendar(firstDate, lastDate);

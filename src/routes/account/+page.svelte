@@ -37,16 +37,8 @@
 		});
 	}
 
-	function cutYear(dates) {
-		return dates.map((date) => {
-			return date.substr(0, 4);
-		});
-	}
-
-	function cutMonth(dates) {
-		return dates.map((date) => {
-			return date.substr(5, 2);
-		});
+	function cutDay(date) {
+		return parseInt(date.substr(8, 10));
 	}
 
 	function filterUniqueDates() {
@@ -65,12 +57,14 @@
 		for (let i = 0; i < uniqueDates.length; i++) {
 			const date = uniqueDates[i];
 			// or i === 0 to include first day, where uniqueDates[i - 1] is undefined
-			if (date > uniqueDates[i - 1] || i === 0) {
+			if (i === 0 || cutDay(date) - 1 === cutDay(uniqueDates[i - 1])) {
+				console.log("yeah");
 				streak++;
 				if (streak > longestStreak) {
 					longestStreak = streak;
 				}
 			} else {
+				console.log("breaks");
 				streak = 0;
 			}
 		}
@@ -92,22 +86,6 @@
 	}
 
 	const graphData = [filterKeyValues("WPM").reverse().slice(0, 15), filterKeyValues("CPM").reverse().slice(0, 15), filterKeyValues("mistakes").reverse().slice(0, 15)];
-
-	// function calenderData() {
-	// 	const dates = cutDate(filterKeyValues("created_at"));
-
-	// 	let years = cutYear(dates);
-	// 	years = [...new Set(years)];
-
-	// 	let monts = cutYear(dates);
-	// 	years = [...new Set(years)];
-
-	// 	return {
-	// 		dates,
-	// 		years,
-	// 		months
-	// 	};
-	// }
 </script>
 
 <body>
