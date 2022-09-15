@@ -68,16 +68,44 @@
 		// console.log(calendar[0][0]);
 	}
 
+	function getYear(index) {
+		return firstDate.getFullYear() + index;
+	}
+
+	function getMonth(index) {
+		const month = firstDate.getMonth() + index;
+		return new Date(2000, month).toLocaleString("en-US", {
+			month: "long"
+		});
+	}
+
+	function getColor(exercises) {
+		if (exercises === 0) {
+			return 0;
+		} else if (exercises < 5) {
+			return 1;
+		} else if (exercises < 10) {
+			return 2;
+		} else if (exercises < 20) {
+			return 3;
+		} else if (exercises >= 20) {
+			return 4;
+		} else {
+			return 0;
+		}
+	}
+
 	const calendar = createCalendar(firstDate, lastDate);
 </script>
 
 <main id="heatmap">
-	<p>Calendar</p>
-	{#each calendar as year}
-		{#each year as month}
+	<h3>Activity map</h3>
+	{#each calendar as year, y}
+		{#each year as month, m}
+			<p>{getMonth(m)} {getYear(y)}</p>
 			<div class="days">
-				{#each Object.values(month) as day, i}
-					<div class="day">{day}</div>
+				{#each Object.values(month) as day}
+					<div class="day" class:p0={getColor(day) === 0} class:p1={getColor(day) === 1} class:p2={getColor(day) === 2} class:p3={getColor(day) === 3} class:p4={getColor(day) === 4}>{day}</div>
 				{/each}
 			</div>
 		{/each}
@@ -87,6 +115,7 @@
 <style>
 	main {
 		display: inline-block;
+		margin-bottom: 1rem;
 	}
 
 	.days {
@@ -99,11 +128,30 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: var(--text);
 		filter: opacity(calc());
 		color: var(--background);
 		width: 2.5rem;
 		height: 2.5rem;
 		border-radius: 0.25rem;
+	}
+
+	.p0 {
+		background-color: white;
+	}
+
+	.p1 {
+		background-color: #b7efc5;
+	}
+
+	.p2 {
+		background-color: #6ede8a;
+	}
+
+	.p3 {
+		background-color: #2dc653;
+	}
+
+	.p4 {
+		background-color: lime;
 	}
 </style>
