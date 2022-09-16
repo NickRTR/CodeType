@@ -105,7 +105,17 @@
 			<p>{getMonth(m)} {getYear(y)}</p>
 			<div class="days">
 				{#each Object.values(month) as day}
-					<div class="day" class:p0={getColor(day) === 0} class:p1={getColor(day) === 1} class:p2={getColor(day) === 2} class:p3={getColor(day) === 3} class:p4={getColor(day) === 4}>{day}</div>
+					<div
+						class="day"
+						title="{day} exercise(s)"
+						class:p0={getColor(day) === 0}
+						class:p1={getColor(day) === 1}
+						class:p2={getColor(day) === 2}
+						class:p3={getColor(day) === 3}
+						class:p4={getColor(day) === 4}
+					>
+						{day}
+					</div>
 				{/each}
 			</div>
 		{/each}
