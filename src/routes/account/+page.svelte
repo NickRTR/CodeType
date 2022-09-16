@@ -1,5 +1,6 @@
 <script>
 	import Graph from "$lib/components/Graph.svelte";
+	import Calendar from "$lib/components/Calendar.svelte";
 
 	export let data;
 
@@ -36,6 +37,10 @@
 		});
 	}
 
+	function cutDay(date) {
+		return parseInt(date.substr(8, 10));
+	}
+
 	function filterUniqueDates() {
 		const times = filterKeyValues("created_at");
 
@@ -52,7 +57,7 @@
 		for (let i = 0; i < uniqueDates.length; i++) {
 			const date = uniqueDates[i];
 			// or i === 0 to include first day, where uniqueDates[i - 1] is undefined
-			if (date > uniqueDates[i - 1] || i === 0) {
+			if (i === 0 || cutDay(date) - 1 === cutDay(uniqueDates[i - 1])) {
 				streak++;
 				if (streak > longestStreak) {
 					longestStreak = streak;
@@ -100,6 +105,8 @@
 	<hr />
 
 	<Graph width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
+
+	<Calendar data={filterKeyValues("created_at")} />
 </body>
 
 <style>

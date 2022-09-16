@@ -1,5 +1,5 @@
 <script>
-	import { exercise, practiceMode } from "$lib/stores";
+	import { exercise, practiceMode, resetStats } from "$lib/stores";
 	import generateExercise from "$lib/exercises/generator";
 	import { goto } from "$app/navigation";
 
@@ -10,6 +10,7 @@
 		// reset on esc
 		if (event.key === "Escape") {
 			$exercise = generateExercise();
+			resetStats();
 			$practiceMode = true;
 			goto("/");
 		}
