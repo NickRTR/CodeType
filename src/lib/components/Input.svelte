@@ -189,7 +189,7 @@
 	}
 
 	#input {
-		border-right: 2px solid #ffc600;
+		border-right: 2px solid var(--accent);
 		/* normalize cursor */
 		margin-inline: -1px;
 	}

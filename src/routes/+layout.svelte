@@ -39,7 +39,7 @@
 		justify-content: space-between;
 	}
 
-	/* Colors: deepping, lawngreen */
+	/* Colors: deepping, lawngreen, #ffc600 */
 
 	:global(:root) {
 		--accent: deeppink;
