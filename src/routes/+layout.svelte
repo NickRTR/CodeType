@@ -39,8 +39,10 @@
 		justify-content: space-between;
 	}
 
+	/* Colors: deepping, lawngreen */
+
 	:global(:root) {
-		--accent: #ffc600;
+		--accent: deeppink;
 		--grey: grey;
 		--background: black;
 		--text: white;
