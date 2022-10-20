@@ -13,6 +13,7 @@
 		"@supabase/supabase-js": "^1.35.4",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"@zerodevx/svelte-toast": "^0.8.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.44.0",

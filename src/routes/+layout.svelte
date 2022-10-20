@@ -1,7 +1,8 @@
 <script>
 	import { exercise, practiceMode, resetStats } from "$lib/stores";
-	import generateExercise from "$lib/exercises/generator";
 	import { goto } from "$app/navigation";
+	import { SvelteToast } from "@zerodevx/svelte-toast";
+	import generateExercise from "$lib/exercises/generator";
 
 	import Nav from "$lib/components/Nav.svelte";
 	import Footer from "$lib/components/Footer.svelte";
@@ -22,6 +23,8 @@
 <svelte:head>
 	<title>Syntype</title>
 </svelte:head>
+
+<SvelteToast />
 
 <body>
 	<Nav />
@@ -46,6 +49,9 @@
 		--grey: grey;
 		--background: black;
 		--text: white;
+
+		--toastBackground: var(--background);
+		--toastBarBackground: var(--accent);
 	}
 
 	:global(body) {

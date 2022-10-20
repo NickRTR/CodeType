@@ -1,8 +1,9 @@
 <script>
 	import { stats, exercise, practiceMode } from "$lib/stores";
 	import { settings } from "$lib/persistentStores";
-	import generateExercise from "$lib/exercises/generator";
 	import { onMount } from "svelte";
+	import { toast } from "@zerodevx/svelte-toast";
+	import generateExercise from "$lib/exercises/generator";
 
 	let input = "";
 
@@ -135,8 +136,7 @@
 		const data = await res.json();
 
 		if (data.error) {
-			// TODO: Use Notification Toasts
-			alert("Error while persisting stats: " + data.error.message);
+			toast.push("Error while persisting stats: " + data.error.message);
 		} else {
 			console.log("Successfully saved stats.");
 		}
