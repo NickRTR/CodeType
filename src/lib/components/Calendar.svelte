@@ -60,12 +60,16 @@
 			count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth()}.${stat.getDate()}`] || 0) + 1;
 		});
 
-		Object.keys(count).forEach((date) => {
-			const dateObject = new Date(date);
-			calendar[0][0][dateObject.getDate()] = count[date];
-		});
-
-		// console.log(calendar[0][0]);
+		for (let year = 0; year < calendar.length; year++) {
+			for (let month = 0; month < calendar[year].length; month++) {
+				for (let day = 0; day < calendar[year][month].length; day++) {
+					const string = `${new Date().getFullYear() + year}.${new Date().getMonth() + month - 1}.${day}`;
+					if (count[string] !== undefined) {
+						calendar[year][month][day] = count[string];
+					}
+				}
+			}
+		}
 	}
 
 	function getYear(index) {
