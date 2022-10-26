@@ -12,6 +12,10 @@ export const javascript = [
 	"<variableModifier> <variableName> = <randomBoolean><;>",
 	"<variableModifier> res = await fetch(<'>/api/<variableName><'>)<;>",
 
+	"<variableName> = <randomNumber><;>",
+	"<variableName> = <'><randomString><'><;>",
+	"<variableName> = <randomBoolean><;>",
+
 	// common syntax
 	"console.log(<variableName>)<;>",
 	"import { <variableName> } from <'>$lib/components/<variableName><'><;>",
