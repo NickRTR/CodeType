@@ -23,6 +23,10 @@
 			case "average":
 				result = values.reduce((a, b) => a + b, 0) / values.length;
 				break;
+			case "highest":
+				result = values.sort();
+				result = result[result.length - 1];
+				break;
 			case "sum":
 				result = values.reduce((a, b) => a + b, 0);
 				break;
@@ -97,6 +101,9 @@
 	<p>Longest Streak: <span>{days().longestStreak} days</span></p>
 	<p>Total exercises: <span>{data.stats.length}</span></p>
 	<p>Total time trained: <span>{Math.floor(calculate("sum", "time") / 60)}m {calculate("sum", "time") - Math.floor(calculate("sum", "time") / 60) * 60}s</span></p>
+
+	<p>Best CPM: <span>{calculate("highest", "CPM")}</span></p>
+	<p>Best WPM: <span>{calculate("highest", "WPM")}</span></p>
 
 	<p>Average CPM: <span>{calculate("average", "CPM")}</span></p>
 	<p>Average WPM: <span>{calculate("average", "WPM")}</span></p>
