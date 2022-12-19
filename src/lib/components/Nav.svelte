@@ -25,7 +25,7 @@
 					$settings.persistStats = !$settings.persistStats;
 				}}
 			>
-				persistStats
+				persist stats
 			</p>
 			<span class="settingsDivider" />
 			<p
