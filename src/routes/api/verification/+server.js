@@ -11,6 +11,5 @@ export async function POST({ request, cookies }) {
 		maxAge: 60 * 60 * 24 * 30
 	});
 
-	console.log("redirect");
 	throw redirect(307, "/account");
 }
