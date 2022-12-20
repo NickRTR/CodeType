@@ -5,6 +5,8 @@
 	const lastDate = new Date(data[data.length - 1]);
 
 	function createMonth(year, month) {
+		console.log(month);
+
 		const date = getFirstDayOfMonth(year, month);
 
 		let days = [];
@@ -57,7 +59,7 @@
 		// count multiple exercises on same day
 		data.forEach((stat) => {
 			stat = new Date(stat);
-			count[`${stat.getFullYear()}.${stat.getMonth() + 2}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth() + 2}.${stat.getDate()}`] || 0) + 1;
+			count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] || 0) + 1;
 		});
 
 		for (let year = 0; year < calendar.length; year++) {
