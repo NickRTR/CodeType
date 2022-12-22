@@ -5,8 +5,6 @@
 	const lastDate = new Date(data[data.length - 1]);
 
 	function createMonth(year, month) {
-		console.log(month);
-
 		const date = getFirstDayOfMonth(year, month);
 
 		let days = [];

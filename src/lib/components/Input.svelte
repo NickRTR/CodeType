@@ -15,24 +15,32 @@
 	let startTime;
 	let lastInput;
 
+	$: AFK = false;
+
+	$: {
+		if (AFK == true) console.log("Detected user being AFK. Therefore not persisting this exercise to the database.");
+	}
+
 	exercise.subscribe(() => ((input = ""), (startTime = undefined)));
 
 	// AFK detection
 	onMount(() => {
-		window.setInterval(function () {
+		if (!AFK) {
+			window.setInterval(function () {
 			if (startTime === undefined || lastInput === undefined) return;
 			const startToNow = new Date().getTime() - startTime.getTime();
 			const startToLastInput = lastInput.getTime() - startTime.getTime();
-			const AFK = startToNow - startToLastInput > 5000;
-			if (AFK) {
-				if (confirm("Thinking about your next step? Small Hint, the next character you should type is the one in grey, located on the right sight of your cursor ;).")) {
-					console.log("Resetting");
-					lastInput = undefined;
-					startTime = undefined;
-					input = "";
-				}
-			}
+			AFK = startToNow - startToLastInput > 5000;
+			// if (AFK) {
+			// 	if (confirm("Thinking about your next step? Small Hint, the next character you should type is the one in grey, located on the right side of your cursor ;).")) {
+			// 		console.log("Resetting");
+			// 		lastInput = undefined;
+			// 		startTime = undefined;
+			// 		input = "";
+			// 	}			
+			// }
 		}, 2000);
+		}
 	});
 
 	function handleInput(event) {
@@ -77,7 +85,8 @@
 	function submitInput() {
 		$stats.accuracy = 100 - ($stats.mistakes / $exercise.length) * 100;
 
-		if ($settings.persistStats) persistStats();
+		// don't persist stats if user was afk to preserve statistic falsification
+		if ($settings.persistStats && !AFK) persistStats();
 
 		$practiceMode = false;
 
