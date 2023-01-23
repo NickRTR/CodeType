@@ -145,7 +145,8 @@
 		const data = await res.json();
 
 		if (data.error) {
-			toast.push("Error while persisting stats: " + data.error.message);
+			console.log(data.error);
+			toast.push("Error while persisting stats: " + data.error);
 		} else {
 			console.log("Successfully saved stats.");
 		}
