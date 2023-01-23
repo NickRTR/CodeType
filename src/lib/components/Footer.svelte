@@ -9,7 +9,7 @@
 		<div class="liveStats">
 			<p>Mistakes: {$stats.mistakes}</p>
 		</div>
-		<p>©2022 Nick Reutlinger</p>
+		<p>©2023 Nick Reutlinger</p>
 	</main>
 </footer>
 
