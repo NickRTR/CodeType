@@ -1,19 +1,19 @@
 <script>
-	import { exercise, practiceMode, resetStats } from "$lib/stores";
-	import { goto } from "$app/navigation";
-	import { SvelteToast } from "@zerodevx/svelte-toast";
-	import generateExercise from "$lib/exercises/generator";
+	import { exercise, practiceMode, resetStats } from '$lib/stores';
+	import { goto } from '$app/navigation';
+	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import generateExercise from '$lib/exercises/generator';
 
-	import Nav from "$lib/components/Nav.svelte";
-	import Footer from "$lib/components/Footer.svelte";
+	import Nav from '$lib/components/Nav.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	function handleInput(event) {
 		// reset on esc
-		if (event.key === "Escape") {
+		if (event.key === 'Escape') {
 			$exercise = generateExercise();
 			resetStats();
 			$practiceMode = true;
-			goto("/");
+			goto('/');
 		}
 	}
 </script>
@@ -58,7 +58,7 @@
 		margin: 0;
 		background-color: var(--background);
 		color: var(--text);
-		font-family: Consolas, "Courier New", monospace;
+		font-family: Consolas, 'Courier New', monospace;
 		font-size: large;
 		text-align: center;
 	}

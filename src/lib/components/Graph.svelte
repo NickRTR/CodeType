@@ -1,6 +1,6 @@
 <script>
-	import { Chart, registerables } from "chart.js";
-	import { onMount } from "svelte";
+	import { Chart, registerables } from 'chart.js';
+	import { onMount } from 'svelte';
 
 	export let width;
 
@@ -15,7 +15,7 @@
 	onMount(() => {
 		Chart.register(...registerables);
 		new Chart(canvas, {
-			type: "line",
+			type: 'line',
 			data: {
 				labels,
 				datasets: [
@@ -23,20 +23,20 @@
 						label: titles[0],
 						data: data[0].reverse(),
 						fill: true,
-						backgroundColor: "rgba(255, 99, 132, .8)"
+						backgroundColor: 'rgba(255, 99, 132, .8)'
 					},
 					{
 						label: titles[1],
 						data: data[1].reverse(),
 						fill: true,
-						backgroundColor: "rgba(54, 162, 235, .8)"
+						backgroundColor: 'rgba(54, 162, 235, .8)'
 					},
 					{
 						label: titles[2],
 						data: data[2].reverse(),
-						yAxisID: "B",
+						yAxisID: 'B',
 						fill: true,
-						backgroundColor: "rgba(255, 206, 86, .8)"
+						backgroundColor: 'rgba(255, 206, 86, .8)'
 					}
 				]
 			},
@@ -45,21 +45,21 @@
 					y: {
 						title: {
 							display: true,
-							text: "WPM and CPM"
+							text: 'WPM and CPM'
 						}
 					},
 					B: {
-						position: "right",
+						position: 'right',
 						beginAtZero: true,
 						title: {
 							display: true,
-							text: "Mistakes"
+							text: 'Mistakes'
 						}
 					},
 					x: {
 						title: {
 							display: true,
-							text: "Exercise number"
+							text: 'Exercise number'
 						}
 					}
 				}

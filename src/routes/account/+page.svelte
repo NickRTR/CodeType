@@ -1,6 +1,6 @@
 <script>
-	import Graph from "$lib/components/Graph.svelte";
-	import Calendar from "$lib/components/Calendar.svelte";
+	import Graph from '$lib/components/Graph.svelte';
+	import Calendar from '$lib/components/Calendar.svelte';
 
 	export let data;
 
@@ -14,20 +14,20 @@
 		const values = filterKeyValues(key);
 
 		if (values.length < 1) {
-			return "Not enough data";
+			return 'Not enough data';
 		}
 
 		let result;
 
 		switch (operator) {
-			case "average":
+			case 'average':
 				result = values.reduce((a, b) => a + b, 0) / values.length;
 				break;
-			case "highest":
+			case 'highest':
 				result = values.sort();
 				result = result[result.length - 1];
 				break;
-			case "sum":
+			case 'sum':
 				result = values.reduce((a, b) => a + b, 0);
 				break;
 		}
@@ -46,7 +46,7 @@
 	}
 
 	function filterUniqueDates() {
-		const times = filterKeyValues("created_at");
+		const times = filterKeyValues('created_at');
 
 		const dates = cutDate(times);
 
@@ -87,7 +87,11 @@
 		graphLabels.unshift(totalExercises - i);
 	}
 
-	const graphData = [filterKeyValues("WPM").reverse().slice(0, 15), filterKeyValues("CPM").reverse().slice(0, 15), filterKeyValues("mistakes").reverse().slice(0, 15)];
+	const graphData = [
+		filterKeyValues('WPM').reverse().slice(0, 15),
+		filterKeyValues('CPM').reverse().slice(0, 15),
+		filterKeyValues('mistakes').reverse().slice(0, 15)
+	];
 </script>
 
 <body>
@@ -100,20 +104,31 @@
 	<p>Current Streak: <span>{days().streak} days</span></p>
 	<p>Longest Streak: <span>{days().longestStreak} days</span></p>
 	<p>Total exercises: <span>{data.stats.length}</span></p>
-	<p>Total time trained: <span>{Math.floor(calculate("sum", "time") / 60)}m {calculate("sum", "time") - Math.floor(calculate("sum", "time") / 60) * 60}s</span></p>
+	<p>
+		Total time trained: <span
+			>{Math.floor(calculate('sum', 'time') / 60)}m {calculate('sum', 'time') -
+				Math.floor(calculate('sum', 'time') / 60) * 60}s</span
+		>
+	</p>
 
-	<p>Best CPM: <span>{calculate("highest", "CPM")}</span></p>
-	<p>Best WPM: <span>{calculate("highest", "WPM")}</span></p>
+	<p>Best CPM: <span>{calculate('highest', 'CPM')}</span></p>
+	<p>Best WPM: <span>{calculate('highest', 'WPM')}</span></p>
 
-	<p>Average CPM: <span>{calculate("average", "CPM")}</span></p>
-	<p>Average WPM: <span>{calculate("average", "WPM")}</span></p>
-	<p>Average accuracy: <span>{calculate("average", "accuracy")}%</span></p>
+	<p>Average CPM: <span>{calculate('average', 'CPM')}</span></p>
+	<p>Average WPM: <span>{calculate('average', 'WPM')}</span></p>
+	<p>Average accuracy: <span>{calculate('average', 'accuracy')}%</span></p>
 
 	<hr />
 
-	<Graph width="500px" height="" data={graphData} labels={graphLabels} titles={["WPM", "CPM", "Mistakes"]} />
+	<Graph
+		width="500px"
+		height=""
+		data={graphData}
+		labels={graphLabels}
+		titles={['WPM', 'CPM', 'Mistakes']}
+	/>
 
-	<Calendar data={filterKeyValues("created_at")} />
+	<Calendar data={filterKeyValues('created_at')} />
 </body>
 
 <style>

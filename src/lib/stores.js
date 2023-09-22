@@ -1,5 +1,5 @@
-import { writable } from "svelte/store";
-import generateExercise from "$lib/exercises/generator";
+import { writable } from 'svelte/store';
+import generateExercise from '$lib/exercises/generator';
 
 export const exercise = writable(generateExercise(false));
 

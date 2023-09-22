@@ -57,13 +57,16 @@
 		// count multiple exercises on same day
 		data.forEach((stat) => {
 			stat = new Date(stat);
-			count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] = (count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] || 0) + 1;
+			count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] =
+				(count[`${stat.getFullYear()}.${stat.getMonth() + 3}.${stat.getDate()}`] || 0) + 1;
 		});
 
 		for (let year = 0; year < calendar.length; year++) {
 			for (let month = 0; month < calendar[year].length; month++) {
 				for (let day = 0; day < calendar[year][month].length; day++) {
-					const string = `${new Date().getFullYear() + year}.${new Date().getMonth() + month}.${day}`;
+					const string = `${new Date().getFullYear() + year}.${
+						new Date().getMonth() + month
+					}.${day}`;
 					if (count[string] !== undefined) {
 						calendar[year][month][day - 1] = count[string];
 					}
@@ -78,8 +81,8 @@
 
 	function getMonth(index) {
 		const month = firstDate.getMonth() + index;
-		return new Date(2000, month).toLocaleString("en-US", {
-			month: "long"
+		return new Date(2000, month).toLocaleString('en-US', {
+			month: 'long'
 		});
 	}
 

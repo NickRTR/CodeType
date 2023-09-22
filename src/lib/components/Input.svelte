@@ -1,11 +1,11 @@
 <script>
-	import { stats, exercise, practiceMode } from "$lib/stores";
-	import { settings } from "$lib/persistentStores";
-	import { onMount } from "svelte";
-	import { toast } from "@zerodevx/svelte-toast";
-	import generateExercise from "$lib/exercises/generator";
+	import { stats, exercise, practiceMode } from '$lib/stores';
+	import { settings } from '$lib/persistentStores';
+	import { onMount } from 'svelte';
+	import { toast } from '@zerodevx/svelte-toast';
+	import generateExercise from '$lib/exercises/generator';
 
-	let input = "";
+	let input = '';
 
 	// generate new exercise on settings change
 	settings.subscribe(() => {
@@ -18,28 +18,31 @@
 	$: AFK = false;
 
 	$: {
-		if (AFK == true) console.log("Detected user being AFK. Therefore not persisting this exercise to the database.");
+		if (AFK == true)
+			console.log(
+				'Detected user being AFK. Therefore not persisting this exercise to the database.'
+			);
 	}
 
-	exercise.subscribe(() => ((input = ""), (startTime = undefined)));
+	exercise.subscribe(() => ((input = ''), (startTime = undefined)));
 
 	// AFK detection
 	onMount(() => {
 		if (!AFK) {
 			window.setInterval(function () {
-			if (startTime === undefined || lastInput === undefined) return;
-			const startToNow = new Date().getTime() - startTime.getTime();
-			const startToLastInput = lastInput.getTime() - startTime.getTime();
-			AFK = startToNow - startToLastInput > 5000;
-			// if (AFK) {
-			// 	if (confirm("Thinking about your next step? Small Hint, the next character you should type is the one in grey, located on the right side of your cursor ;).")) {
-			// 		console.log("Resetting");
-			// 		lastInput = undefined;
-			// 		startTime = undefined;
-			// 		input = "";
-			// 	}			
-			// }
-		}, 2000);
+				if (startTime === undefined || lastInput === undefined) return;
+				const startToNow = new Date().getTime() - startTime.getTime();
+				const startToLastInput = lastInput.getTime() - startTime.getTime();
+				AFK = startToNow - startToLastInput > 5000;
+				// if (AFK) {
+				// 	if (confirm("Thinking about your next step? Small Hint, the next character you should type is the one in grey, located on the right side of your cursor ;).")) {
+				// 		console.log("Resetting");
+				// 		lastInput = undefined;
+				// 		startTime = undefined;
+				// 		input = "";
+				// 	}
+				// }
+			}, 2000);
 		}
 	});
 
@@ -47,11 +50,14 @@
 		$practiceMode = true;
 
 		// delete last letter on backspace
-		if (event.key === "Backspace") {
+		if (event.key === 'Backspace') {
 			// restrict deleting to the last word that was wrong
-			let inputWords = input.split(" ");
-			let exerciseWords = $exercise.split(" ");
-			if (inputWords[inputWords.length - 2] !== exerciseWords[inputWords.length - 2] || input[input.length - 1] !== " ") {
+			let inputWords = input.split(' ');
+			let exerciseWords = $exercise.split(' ');
+			if (
+				inputWords[inputWords.length - 2] !== exerciseWords[inputWords.length - 2] ||
+				input[input.length - 1] !== ' '
+			) {
 				input = input.slice(0, -1);
 			}
 		}
@@ -102,8 +108,8 @@
 	function calcCPM(time) {
 		if (time < 0.1) return 0;
 		let characterCount = 0;
-		const inputCharacters = input.split("");
-		const exerciseCharacters = $exercise.split("");
+		const inputCharacters = input.split('');
+		const exerciseCharacters = $exercise.split('');
 		for (let i = 0; i < exerciseCharacters.length; i++) {
 			if (inputCharacters[i] === exerciseCharacters[i]) {
 				characterCount++;
@@ -116,8 +122,8 @@
 	function calcWPM(time) {
 		if (time < 0.1) return 0;
 		let wordCount = 0;
-		const inputWords = input.split(" ");
-		const exerciseWords = $exercise.split(" ");
+		const inputWords = input.split(' ');
+		const exerciseWords = $exercise.split(' ');
 		for (let i = 0; i < exerciseWords.length; i++) {
 			if (inputWords[i] === exerciseWords[i]) {
 				wordCount++;
@@ -128,8 +134,8 @@
 	}
 
 	async function persistStats() {
-		const res = await fetch("/api/persistStats", {
-			method: "POST",
+		const res = await fetch('/api/persistStats', {
+			method: 'POST',
 			body: JSON.stringify({
 				exercise: $exercise,
 				input,
@@ -146,9 +152,9 @@
 
 		if (data.error) {
 			console.log(data.error);
-			toast.push("Error while persisting stats: " + data.error);
+			toast.push('Error while persisting stats: ' + data.error);
 		} else {
-			console.log("Successfully saved stats.");
+			console.log('Successfully saved stats.');
 		}
 	}
 </script>
@@ -161,13 +167,13 @@
 		<p id="input" class="animateCursor">
 			{#each input as letter, i}
 				{#if letter !== $exercise[i]}
-					{#if $exercise[i] === " "}
+					{#if $exercise[i] === ' '}
 						<!-- &nbsp is a space -->
 						<span class="incorrectLetter">_</span>
 					{:else}
 						<span class="incorrectLetter">{$exercise[i]}</span>
 					{/if}
-				{:else if letter === " "}
+				{:else if letter === ' '}
 					<span>&nbsp</span>
 				{:else}
 					<span>{letter}</span>
@@ -176,7 +182,7 @@
 		</p>
 		<p id="exercise">
 			{#each $exercise.slice(input.length) as letter}
-				{#if letter === " "}
+				{#if letter === ' '}
 					<span class="exerciseLetter">&nbsp</span>
 				{:else}
 					<span class="exerciseLetter">{letter}</span>

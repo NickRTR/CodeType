@@ -1,6 +1,6 @@
 <script>
-	import { stats } from "$lib/stores";
-	import Divider from "$lib/components/Divider.svelte";
+	import { stats } from '$lib/stores';
+	import Divider from '$lib/components/Divider.svelte';
 </script>
 
 <footer>

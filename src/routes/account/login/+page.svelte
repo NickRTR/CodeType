@@ -1,5 +1,5 @@
 <script>
-	import { enhance } from "$app/forms";
+	import { enhance } from '$app/forms';
 
 	export let form;
 </script>
@@ -7,10 +7,20 @@
 <body>
 	<h1>Login / Signup</h1>
 
-	<p id="description">Enter your email address to login or signup. You will then receive an email, maybe tagged as spam, with a confirmation link.</p>
+	<p id="description">
+		Enter your email address to login or signup. You will then receive an email, maybe tagged as
+		spam, with a confirmation link.
+	</p>
 
 	<form method="POST" use:enhance autocomplete="off">
-		<input id="email" name="email" placeholder="email" type="email" value={form?.email ?? ""} required /><br />
+		<input
+			id="email"
+			name="email"
+			placeholder="email"
+			type="email"
+			value={form?.email ?? ''}
+			required
+		/><br />
 
 		<button type="submit" title="Login">Login</button>
 

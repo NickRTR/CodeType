@@ -1,8 +1,8 @@
 <script>
-	import { practiceMode } from "$lib/stores";
+	import { practiceMode } from '$lib/stores';
 
-	import Input from "$lib/components/Input.svelte";
-	import Stats from "$lib/components/Stats.svelte";
+	import Input from '$lib/components/Input.svelte';
+	import Stats from '$lib/components/Stats.svelte';
 </script>
 
 <body>

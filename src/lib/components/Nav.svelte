@@ -1,8 +1,8 @@
 <script>
-	import { settings } from "$lib/persistentStores";
-	import { page } from "$app/stores";
+	import { settings } from '$lib/persistentStores';
+	import { page } from '$app/stores';
 
-	import Divider from "$lib/components/Divider.svelte";
+	import Divider from '$lib/components/Divider.svelte';
 </script>
 
 <nav>

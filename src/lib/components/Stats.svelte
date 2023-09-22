@@ -1,15 +1,15 @@
 <script>
-	import { stats, resetStats, practiceMode } from "$lib/stores";
-	import { page } from "$app/stores";
-	import { onMount } from "svelte";
+	import { stats, resetStats, practiceMode } from '$lib/stores';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	onMount(() => {
-		document.getElementById("Resume").focus();
+		document.getElementById('Resume').focus();
 	});
 
 	function handleInput(event) {
 		// generate new exercise and exit stats if space is pressed
-		if (event.key === " ") {
+		if (event.key === ' ') {
 			resume();
 		}
 	}
@@ -42,7 +42,9 @@
 				}}>Resume</button
 			>
 			{#if $page.data.user}
-				<a href="/account" data-sveltekit-prefetch><button type="button" title="Dashboard">Dashboard</button></a>
+				<a href="/account" data-sveltekit-prefetch
+					><button type="button" title="Dashboard">Dashboard</button></a
+				>
 			{/if}
 		</section>
 	</main>
