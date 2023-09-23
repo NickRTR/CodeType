@@ -2,7 +2,7 @@
 	import { stats, exercise, practiceMode } from '$lib/stores';
 	import { settings } from '$lib/persistentStores';
 	import { onMount } from 'svelte';
-	import { toast } from '@zerodevx/svelte-toast';
+	import { toast } from 'svelte-french-toast';
 	import generateExercise from '$lib/exercises/generator';
 
 	let input = '';
@@ -152,8 +152,9 @@
 
 		if (data.error) {
 			console.log(data.error);
-			toast.push('Error while persisting stats: ' + data.error);
+			toast.error('Error while persisting stats: ' + data.error);
 		} else {
+			toast.success('Successfully saved stats.');
 			console.log('Successfully saved stats.');
 		}
 	}

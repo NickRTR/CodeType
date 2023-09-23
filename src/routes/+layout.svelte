@@ -1,7 +1,7 @@
 <script>
 	import { exercise, practiceMode, resetStats } from '$lib/stores';
 	import { goto } from '$app/navigation';
-	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import { Toaster } from 'svelte-french-toast';
 	import generateExercise from '$lib/exercises/generator';
 
 	import Nav from '$lib/components/Nav.svelte';
@@ -24,13 +24,11 @@
 	<title>Syntype</title>
 </svelte:head>
 
-<SvelteToast />
-
 <body>
+	<Toaster />
+
 	<Nav />
-
 	<slot />
-
 	<Footer />
 </body>
 

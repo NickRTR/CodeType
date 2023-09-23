@@ -9,7 +9,7 @@ export async function load({ request }) {
 	if (cookieString !== null) {
 		const cookies = parse(cookieString);
 		if (cookies.auth) {
-			const user = await supabase.auth.api.getUser(cookies.auth);
+			const user = await supabase.auth.getUser(cookies.auth);
 
 			if (user.error) {
 				return {
@@ -19,8 +19,8 @@ export async function load({ request }) {
 
 			return {
 				user: {
-					email: user.user.email,
-					id: user.user.id
+					email: user.data.user.email,
+					id: user.data.user.id
 				},
 				desktop
 			};

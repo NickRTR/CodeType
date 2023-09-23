@@ -17,7 +17,7 @@ export const actions = {
 			return invalid(400, { error: 'Please enter a valid email.' });
 		}
 
-		const response = await supabase.auth.signIn({ email });
+		const response = await supabase.auth.signInWithOtp({ email });
 
 		if (response.error) {
 			return invalid(400, { error: JSON.stringify(response.error.message) });

@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 
-	const token = new URLSearchParams($page.url.hash.substring(1)).get('access_token');
+	const token = $page.url.hash.substring(14).split('&')[0];
 
 	onMount(async () => {
 		if (token) {
