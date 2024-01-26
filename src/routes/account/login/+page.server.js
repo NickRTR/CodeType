@@ -1,4 +1,4 @@
-import { redirect, invalid } from '@sveltejs/kit';
+import { redirect, fail } from '@sveltejs/kit';
 import supabase from '$lib/supabase';
 
 export async function load({ parent }) {
@@ -14,13 +14,13 @@ export const actions = {
 		const email = formData.get('email');
 
 		if (!email) {
-			return invalid(400, { error: 'Please enter a valid email.' });
+			return fail(400, { error: 'Please enter a valid email.' });
 		}
 
 		const response = await supabase.auth.signInWithOtp({ email });
 
 		if (response.error) {
-			return invalid(400, { error: JSON.stringify(response.error.message) });
+			return fail(400, { error: JSON.stringify(response.error.message) });
 		}
 
 		return {
